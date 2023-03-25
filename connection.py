@@ -4,13 +4,13 @@ import facebook
 from PIL import Image
 
 # set the path to the environment variables file and load it
-env_path = os.path.join(os.path.dirname(__file__), '.env')
+# env_path = os.path.join(os.path.dirname(__file__), '.env')
 
 # Load the environment variables
-with open(env_path, 'r') as f:
-    for line in f:
-        key, value = line.strip().split('=')
-        os.environ[key] = value
+# with open(env_path, 'r') as f:
+#     for line in f:
+#         key, value = line.strip().split('=')
+#         os.environ[key] = value
 
 #https://developers.facebook.com/tools/explorer?method=GET&path=me%3Ffields%3Did%2Cname&version=v16.0
 
