@@ -9,6 +9,8 @@ def post():
     # Run connection.py
     subprocess.run(['python', 'connection.py'])
 
+post()
+
 #post every 4h
 schedule.every(4).hours.do(post)
 
