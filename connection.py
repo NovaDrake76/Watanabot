@@ -19,6 +19,7 @@ with open(env_path, 'r') as f:
 app_id = os.environ.get('APP_ID')
 app_secret = os.environ.get('APP_SECRET')
 user_access_token = os.environ.get('USER_ACCESS_TOKEN')
+page_access_token = os.environ.get('PAGE_ACCESS_TOKEN')
 page_id = os.environ.get('PAGE_ID')
 
 
@@ -43,14 +44,14 @@ session.verify = False  # Disable SSL verification for simplicity
 
 
 # Upload the image to Facebook
-if (user_access_token != None):
+if (page_access_token != None):
     with open('output/output.png', 'rb') as f:
         response = session.post(
             f'https://graph.facebook.com/{page_id}/photos',
             files={'file': f},
             data={
-                'access_token': user_access_token,             
-               
+                'access_token': page_access_token,             
+            
             },
         )
 

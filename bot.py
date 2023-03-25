@@ -1,3 +1,4 @@
+from importlib.util import source_hash
 import json
 import os
 import random
@@ -47,7 +48,7 @@ for element in template["elements"]:
         text_color = element["text_color"]
 
         # Draw the text onto the final image
-        draw.text(element["position"], source_path.split("/")[-1].split(".")[0], fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
+        draw.text(element["position"], source_hash.split("/")[-1].split(".")[0], fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
 
 
 # Save the final image
