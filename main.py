@@ -10,11 +10,11 @@ def post():
     subprocess.run(['python', 'connection.py'])
 
 #post every 4h
-# schedule.every(4).hours.do(post)
+schedule.every(4).hours.do(post)
 
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
 
-post()
+# post()
     
