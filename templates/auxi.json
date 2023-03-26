@@ -110,5 +110,21 @@
         "size": [500, 425]
       }
     ]
+  },
+  {
+    "template_path": "templates/template13.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [188, 20],
+        "size": [503, 290]
+      },
+      {
+        "type": "text",
+        "position": [235, 353],
+        "font_size": 30,
+        "text_color": "#ffffff"
+      }
+    ]
   }
 ]
