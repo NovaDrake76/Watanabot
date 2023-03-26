@@ -4,7 +4,8 @@ import facebook
 from PIL import Image
 
 # set the path to the environment variables file and load it
-# env_path = os.path.join(os.path.dirname(__file__), '.env')
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+
 
 # Load the environment variables
 # with open(env_path, 'r') as f:
@@ -22,6 +23,9 @@ user_access_token = os.environ.get('USER_ACCESS_TOKEN')
 page_access_token = os.environ.get('PAGE_ACCESS_TOKEN')
 page_id = os.environ.get('PAGE_ID')
 
+graph = facebook.GraphAPI(page_access_token)
+
+
 # Obtain a Page Access Token for the page
 # graph = facebook.GraphAPI(access_token='user_access_token', version='3.1')
 # page_access_token = graph.get_app_access_token('161493586812298', app_secret)
@@ -33,15 +37,9 @@ session.verify = False  # Disable SSL verification for simplicity
 
 # Upload the image to Facebook
 if (page_access_token != None):
-    with open('output/output.png', 'rb') as f:
-        response = session.post(
-            f'https://graph.facebook.com/{page_id}/photos',
-            files={'file': f},
-            data={
-                'access_token': page_access_token,   
-                
-            },
-        )
+
+    # Upload the image to Facebook
+    response = graph.put_photo(image=open('output/output.png', 'rb'), message='Luto')
 
     response_json = response.json()
     if 'error' in response_json:
