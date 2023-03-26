@@ -1,4 +1,3 @@
-from importlib.util import source_hash
 import json
 import os
 import random
@@ -23,6 +22,7 @@ template_image = Image.open(template_path)
 # Set up the drawing context
 draw = ImageDraw.Draw(template_image)
 
+source_path = "gostosa"
 # Loop over each element in the template and add the corresponding image or text
 for element in template["elements"]:
     if element["type"] == "image":
@@ -47,8 +47,12 @@ for element in template["elements"]:
         # Set up the text color
         text_color = element["text_color"]
 
+    
+        text = source_path.split("/")[-1].split(".")[0]
+      
+
         # Draw the text onto the final image
-        draw.text(element["position"], source_hash.split("/")[-1].split(".")[0], fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
+        draw.text(element["position"], text, fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
 
 
 # Save the final image

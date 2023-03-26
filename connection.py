@@ -22,12 +22,6 @@ user_access_token = os.environ.get('USER_ACCESS_TOKEN')
 page_access_token = os.environ.get('PAGE_ACCESS_TOKEN')
 page_id = os.environ.get('PAGE_ID')
 
-
-# app_id = os.environ['APP_ID']
-# app_secret = os.environ['APP_SECRET']
-# app_access_token = os.environ['APP_ACCESS_TOKEN']
-# page_id = os.environ['PAGE_ID']
-
 # Obtain a Page Access Token for the page
 # graph = facebook.GraphAPI(access_token='user_access_token', version='3.1')
 # page_access_token = graph.get_app_access_token('161493586812298', app_secret)
@@ -38,20 +32,14 @@ session = requests.Session()
 session.verify = False  # Disable SSL verification for simplicity
 
 # Upload the image to Facebook
-# image = Image.open('output/output.png')
-# image = image.convert('RGB')
-# image = image.tobytes()
-
-
-# Upload the image to Facebook
 if (page_access_token != None):
     with open('output/output.png', 'rb') as f:
         response = session.post(
             f'https://graph.facebook.com/{page_id}/photos',
             files={'file': f},
             data={
-                'access_token': page_access_token,             
-            
+                'access_token': page_access_token,   
+                
             },
         )
 
@@ -60,3 +48,6 @@ if (page_access_token != None):
         print(f'Failed to upload image: {response_json["error"]["message"]}')
     else:
         print('Image uploaded successfully')
+
+else:
+    print('Failed to upload image: No page access token found')
