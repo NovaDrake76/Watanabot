@@ -59,5 +59,56 @@
         "size": [300, 320]
       }
     ]
+  },
+  {
+    "template_path": "templates/template9.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [260, 140],
+        "size": [215, 320]
+      },
+      {
+        "type": "image",
+        "position": [10, 140],
+        "size": [240, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template10.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 180],
+        "size": [524, 360]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template11.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 80],
+        "size": [375, 400]
+      },
+      {
+        "type": "mandatoryImage",
+        "source": "templateComponents/arrow.png",
+        "position": [300, 200],
+        "size": [150, 75]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template12.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 140],
+        "size": [500, 425]
+      }
+    ]
   }
 ]

@@ -43,16 +43,25 @@ for element in template["elements"]:
         # Set up font size
         font_size = element["font_size"]
 
-
         # Set up the text color
         text_color = element["text_color"]
 
     
         text = source_path.split("/")[-1].split(".")[0]
       
-
         # Draw the text onto the final image
         draw.text(element["position"], text, fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
+
+    elif element["type"] == "mandatoryImage":
+         # Load the source image
+        source_image = Image.open(element["source"])
+
+        # Resize the source image to fit the template
+        source_image = source_image.resize(element["size"])
+
+        # remove black background, make the background transparent andPaste the source image onto the final image
+        template_image.paste(source_image, element["position"], source_image)
+        
 
 
 # Save the final image
