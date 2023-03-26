@@ -39,11 +39,11 @@ session.verify = False  # Disable SSL verification for simplicity
 if (page_access_token != None):
 
     # Upload the image to Facebook
-    response = graph.put_photo(image=open('output/output.png', 'rb'), message='Luto')
+    response = graph.put_photo(image=open('output/output.png', 'rb'), message='Flamengo')
 
-    response_json = response.json()
-    if 'error' in response_json:
-        print(f'Failed to upload image: {response_json["error"]["message"]}')
+   
+    if 'error' in response:
+        print(f'Failed to upload image: {response["error"]["message"]}')
     else:
         print('Image uploaded successfully')
 
