@@ -141,5 +141,97 @@
         "size": [370, 350]
       }
     ]
+  },
+  {
+    "template_path": "templates/template20.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 120],
+        "size": [500, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template21.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [300, 160],
+        "size": [300, 340]
+      },
+      {
+        "type": "image",
+        "position": [0, 160],
+        "size": [300, 340]
+      },
+
+      {
+        "type": "text",
+        "position": [70, 65],
+        "font_size": 30,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template22.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [70, 22],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 22],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [70, 270],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 270],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [70, 533],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 533],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [70, 790],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 790],
+        "size": [250, 207]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template23.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [60, 100],
+        "size": [200, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 400],
+        "size": [200, 200]
+      }
+    ]
   }
 ]
