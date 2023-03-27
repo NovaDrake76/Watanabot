@@ -50,7 +50,10 @@ for element in template["elements"]:
         text = source_path.split("/")[-1].split(".")[0]
       
         # Draw the text onto the final image
-        draw.text(element["position"], text, fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
+        try:
+            draw.text(element["position"], text, fill=text_color, font=ImageFont.truetype("arial.ttf", font_size))
+        except:
+            draw.text(element["position"], text, fill=text_color)
 
     elif element["type"] == "mandatoryImage":
          # Load the source image
