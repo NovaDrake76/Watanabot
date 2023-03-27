@@ -1,6 +1,4 @@
 import subprocess
-import time
-import schedule
 
 def post():
     # Run bot.py
@@ -11,12 +9,10 @@ def post():
 
 post()
 
-#post every 1h
-schedule.every(1).hours.do(post)
+# #post every 1h
+# schedule.every(1).hours.do(post)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-
-# post()
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
     
