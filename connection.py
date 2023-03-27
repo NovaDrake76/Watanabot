@@ -39,8 +39,12 @@ session.verify = False  # Disable SSL verification for simplicity
 if (page_access_token != None):
 
     #get content of output/text.txt
-    with open('output/text.txt', 'r') as f:
-        text = f.read()
+    try:
+        with open('output/text.txt', 'r') as f:
+            text = f.read()
+    except:
+        text = ""
+
 
     # Upload the image to Facebook
     response = graph.put_photo(image=open('output/output.png', 'rb'), message=text)
