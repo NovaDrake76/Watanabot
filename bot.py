@@ -1,7 +1,7 @@
 import json
 import os
-import random
 from PIL import Image, ImageDraw, ImageFont
+import random
 
 # Set the paths to the source and output images folders
 source_folder = "sources/"
@@ -61,9 +61,34 @@ for element in template["elements"]:
 
         # remove black background, make the background transparent andPaste the source image onto the final image
         template_image.paste(source_image, element["position"], source_image)
-        
-
 
 # Save the final image
 output_path = os.path.join(output_folder, "output.png")
 template_image.save(output_path)
+
+
+# Load the phrases from the JSON file
+with open("phrases.json", "r", encoding="UTF-8") as f:
+    phrases = json.load(f)
+
+    phrases = phrases["phrases"]
+
+
+# Choose 2 random phrases from the list
+random_phrases = random.sample(phrases, 3)
+
+
+# Create a new phrase from the 4 random phrases, cutting random words from each phrase, to make it maximum 80 characters long
+new_phrase = ""
+for phrase in random_phrases:
+    words = phrase.split(" ")
+    words = random.sample(words, random.randint(1, len(words)))
+    new_phrase += " ".join(words) + " "
+
+# Cut the phrase to be maximum 80 characters long
+new_phrase = new_phrase[:80]
+
+# Save the new phrase to the output folder
+with open("output/text.txt", "w") as f:
+    f.write(new_phrase)
+
