@@ -4,7 +4,7 @@ import facebook
 from PIL import Image
 
 # set the path to the environment variables file and load it
-env_path = os.path.join(os.path.dirname(__file__), '.env')
+# env_path = os.path.join(os.path.dirname(__file__), '.env')
 
 
 # Load the environment variables
