@@ -78,15 +78,11 @@ try:
 
 
     # Choose 2 random phrases from the list
-    random_phrases = random.sample(phrases, 3)
+    random_phrases = random.sample(phrases, 2)
 
 
-    # Create a new phrase from the 4 random phrases, cutting random words from each phrase, to make it maximum 80 characters long
-    new_phrase = ""
-    for phrase in random_phrases:
-        words = phrase.split(" ")
-        words = random.sample(words, random.randint(1, len(words)))
-        new_phrase += " ".join(words) + " "
+    # Create a new phrase from the 3 random phrases 
+    new_phrase = f"{random_phrases[0]} {random_phrases[1]} "
 
     # Save the new phrase to the output folder
     with open("output/text.txt", "w") as f:
