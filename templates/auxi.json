@@ -233,5 +233,36 @@
         "size": [200, 200]
       }
     ]
+  },
+  {
+    "template_path": "templates/template24.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 268],
+        "size": [278, 240]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template25.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [5, 140],
+        "size": [500, 300]
+      }
+    ]
+  },
+
+  {
+    "template_path": "templates/template26.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [12, 140],
+        "size": [500, 280]
+      }
+    ]
   }
 ]
