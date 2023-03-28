@@ -1,5 +1,261 @@
 [
   {
+    "template_path": "templates/template3.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 245],
+        "size": [350, 470]
+      },
+      {
+        "type": "image",
+        "position": [370, 245],
+        "size": [350, 470]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template5.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [5, 210],
+        "size": [525, 360]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template6.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [450, 380],
+        "size": [600, 311]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template7.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [60, 100],
+        "size": [600, 450]
+      },
+      {
+        "type": "text",
+        "position": [120, 620],
+        "font_size": 54,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template8.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [200, 140],
+        "size": [300, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template9.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [260, 140],
+        "size": [215, 320]
+      },
+      {
+        "type": "image",
+        "position": [10, 140],
+        "size": [240, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template10.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 180],
+        "size": [524, 360]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template11.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 80],
+        "size": [375, 400]
+      },
+      {
+        "type": "mandatoryImage",
+        "source": "templateComponents/arrow.png",
+        "position": [300, 200],
+        "size": [150, 75]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template12.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 140],
+        "size": [500, 425]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template13.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [188, 20],
+        "size": [503, 290]
+      },
+      {
+        "type": "text",
+        "position": [235, 353],
+        "font_size": 30,
+        "text_color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template14.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 135],
+        "size": [380, 350]
+      },
+      {
+        "type": "image",
+        "position": [380, 135],
+        "size": [370, 350]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template20.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 120],
+        "size": [500, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template21.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [300, 160],
+        "size": [300, 340]
+      },
+      {
+        "type": "image",
+        "position": [0, 160],
+        "size": [300, 340]
+      },
+
+      {
+        "type": "text",
+        "position": [70, 65],
+        "font_size": 30,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template22.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [70, 22],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 22],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [70, 270],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 270],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [70, 533],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 533],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [70, 790],
+        "size": [250, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 790],
+        "size": [250, 207]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template23.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [60, 100],
+        "size": [200, 200]
+      },
+      {
+        "type": "image",
+        "position": [440, 400],
+        "size": [200, 200]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template24.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 268],
+        "size": [278, 240]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template25.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [5, 140],
+        "size": [500, 300]
+      }
+    ]
+  },
+
+  {
     "template_path": "templates/template26.png",
     "elements": [
       {
