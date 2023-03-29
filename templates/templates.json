@@ -264,5 +264,133 @@
         "size": [500, 280]
       }
     ]
+  },
+  {
+    "template_path": "templates/template27.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [40, 80],
+        "size": [200, 150],
+        "rotation": 15
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template28.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 90],
+        "size": [365, 310]
+      },
+      {
+        "type": "mandatoryImage",
+        "source": "templateComponents/arrow.png",
+        "position": [300, 200],
+        "size": [150, 75]
+      },
+      {
+        "type": "text",
+        "position": [350, 40],
+        "font_size": 40,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template29.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [500, 270],
+        "size": [550, 700]
+      },
+      {
+        "type": "mandatoryImage",
+        "source": "templateComponents/heart.png",
+        "position": [400, 650],
+        "size": [500, 250]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template30.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 0],
+        "size": [522, 490]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template31.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 80],
+        "size": [270, 255]
+      },
+      {
+        "type": "image",
+        "position": [280, 80],
+        "size": [275, 255]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template32.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [430, 120],
+        "size": [300, 300]
+      },
+      {
+        "type": "text",
+        "position": [265, 112],
+        "font_size": 30,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template33.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 170],
+        "size": [720, 355]
+      },
+      {
+        "type": "mandatoryImage",
+        "source": "templateComponents/facebook.png",
+        "position": [0, 0],
+        "size": [720, 676]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template34.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [350, 30],
+        "size": [250, 200]
+      },
+      {
+        "type": "text",
+        "position": [465, 330],
+        "font_size": 26,
+        "text_color": "#000000"
+      },
+      {
+        "type": "text",
+        "position": [465, 360],
+        "font_size": 26,
+        "text_color": "#000000"
+      }
+    ]
   }
 ]
