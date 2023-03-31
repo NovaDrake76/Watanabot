@@ -424,5 +424,20 @@
         "text_color": "#fff"
       }
     ]
+  },
+  {
+    "template_path": "templates/template37.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [10, 120],
+        "size": [700, 400]
+      },
+      {
+        "type": "image",
+        "position": [160, 28],
+        "size": [230, 70]
+      }
+    ]
   }
 ]
