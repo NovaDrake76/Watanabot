@@ -392,5 +392,37 @@
         "text_color": "#000000"
       }
     ]
+  },
+  {
+    "template_path": "templates/template35.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 314],
+        "size": [500, 500]
+      },
+      {
+        "type": "text",
+        "position": [380, 8],
+        "font_size": 90,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template36.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 167],
+        "size": [720, 550]
+      },
+      {
+        "type": "text",
+        "position": [270, 120],
+        "font_size": 30,
+        "text_color": "#fff"
+      }
+    ]
   }
 ]
