@@ -2,10 +2,19 @@ import json
 import os
 from PIL import Image, ImageDraw, ImageFont
 import random
+import openai
 
 # Set the paths to the source and output images folders
 source_folder = "sources/"
 output_folder = "output/"
+
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+
+with open(env_path, 'r') as f:
+    for line in f:
+        key, value = line.strip().split('=')
+        os.environ[key] = value
+
 
 # Load the template specifications from the JSON file
 with open("templates/templates.json", "r") as f:
@@ -27,7 +36,8 @@ source_path = "gostosa"
 for element in template["elements"]:
     if element["type"] == "image":
         # Choose a random source image from the folder
-        source_path = os.path.join(source_folder, random.choice(os.listdir(source_folder)))
+        source_path = os.path.join(
+            source_folder, random.choice(os.listdir(source_folder)))
 
         # Load the source image
         source_image = Image.open(source_path)
@@ -46,16 +56,15 @@ for element in template["elements"]:
         # Set up the text color
         text_color = element["text_color"]
 
-    
         text = source_path.split("/")[-1].split(".")[0]
-      
+
         # Draw the text onto the final image
-        
+
         font = ImageFont.truetype(r'arial.ttf', font_size)
-        draw.text(element["position"], text, fill=text_color, font=font)    
+        draw.text(element["position"], text, fill=text_color, font=font)
 
     elif element["type"] == "mandatoryImage":
-         # Load the source image
+        # Load the source image
         source_image = Image.open(element["source"])
 
         # Resize the source image to fit the template
@@ -68,6 +77,8 @@ for element in template["elements"]:
 output_path = os.path.join(output_folder, "output.png")
 template_image.save(output_path)
 
+openai.api_key = os.environ.get('OPENAI_API_KEY')
+
 
 try:
     # Load the phrases from the JSON file
@@ -76,21 +87,37 @@ try:
 
         phrases = phrases["phrases"]
 
-
     # Choose 2 random phrases from the list
     random_phrases = random.sample(phrases, 2)
 
-
-    # Create a new phrase from the 3 random phrases 
+    # Create a new phrase from the 3 random phrases
     new_phrase = f"{random_phrases[0]} {random_phrases[1]} "
 
     # Save the new phrase to the output folder
-    with open("output/text.txt", "w") as f:
-        f.write(new_phrase)
+    try:
+        with open("output/text.txt", "w") as f:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a chatbot"},
+                    {"role": "user", "content": "fale brevemente sobre " + new_phrase},
+                ]
+            )
+
+            result = ''
+            for choice in response.choices:
+                result += choice.message.content
+                f.write(result)
+    except Exception as e:
+        print("error in text generation")
+        with open("output/text.txt", "w") as f:
+            f.write(new_phrase)
+
+        pass
+
+
 except:
+    print("error in text generation")
     with open("output/text.txt", "w") as f:
         f.write("")
     pass
-
-
-

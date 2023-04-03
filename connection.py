@@ -13,7 +13,7 @@ from PIL import Image
 #         key, value = line.strip().split('=')
 #         os.environ[key] = value
 
-#https://developers.facebook.com/tools/explorer?method=GET&path=me%3Ffields%3Did%2Cname&version=v16.0
+# https://developers.facebook.com/tools/explorer?method=GET&path=me%3Ffields%3Did%2Cname&version=v16.0
 
 
 # Get the Facebook API credentials
@@ -38,18 +38,17 @@ session.verify = False  # Disable SSL verification for simplicity
 # Upload the image to Facebook
 if (page_access_token != None):
 
-    #get content of output/text.txt
+    # get content of output/text.txt
     try:
         with open('output/text.txt', 'r') as f:
             text = f.read()
     except:
         text = ""
 
-
     # Upload the image to Facebook
-    response = graph.put_photo(image=open('output/output.png', 'rb'), message=text)
+    response = graph.put_photo(image=open(
+        'output/output.png', 'rb'), message=text)
 
-   
     if 'error' in response:
         print(f'Failed to upload image: {response["error"]["message"]}')
     else:
