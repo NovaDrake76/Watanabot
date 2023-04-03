@@ -102,7 +102,7 @@ try:
                 result += choice.message.content
                 f.write(result)
     except Exception as e:
-        print("error in text generation")
+        print("error in text generation 1" + str(e))
         with open("output/text.txt", "w") as f:
             f.write(new_phrase)
 
@@ -110,7 +110,7 @@ try:
 
 
 except Exception as e:
-    print("error in text generation " + str(e))
+    print("error in text generation 2" + str(e))
     with open("output/text.txt", "w") as f:
         f.write("")
     pass
