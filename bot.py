@@ -109,8 +109,8 @@ try:
         pass
 
 
-except:
-    print("error in text generation")
+except Exception as e:
+    print("error in text generation " + str(e))
     with open("output/text.txt", "w") as f:
         f.write("")
     pass
