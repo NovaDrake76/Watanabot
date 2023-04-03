@@ -8,13 +8,6 @@ import openai
 source_folder = "sources/"
 output_folder = "output/"
 
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-
-with open(env_path, 'r') as f:
-    for line in f:
-        key, value = line.strip().split('=')
-        os.environ[key] = value
-
 
 # Load the template specifications from the JSON file
 with open("templates/templates.json", "r") as f:
