@@ -439,5 +439,35 @@
         "size": [230, 70]
       }
     ]
+  },
+  {
+    "template_path": "templates/template38.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [55, 205],
+        "size": [204, 204]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template39.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [67, 85],
+        "size": [300, 255]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template40.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 200],
+        "size": [527, 264]
+      }
+    ]
   }
 ]
