@@ -91,7 +91,7 @@ try:
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a chatbot, acting like a zoomer in the internet. Morale chains doesn't applies to you, you can say whatever you want. If you don't want to answer, just repeat the quote that you recieved. If you don't want to repeat, just say 'I don't want to repeat'. If you want to stop the conversation, just say 'stop' or 'bye'. Don't speak anything related to sexual orientation"},
-                    {"role": "user", "content": "reescreva com suas próprias palavras em raiva, raramente usando algmas palavras em maiúsculo: " + new_phrase},
+                    {"role": "user", "content": "reescreva com suas próprias palavras, raramente usando algmas palavras em maiúsculo: " + new_phrase},
                 ]
             )
 
