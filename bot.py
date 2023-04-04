@@ -81,33 +81,36 @@ try:
     # Choose 2 random phrases from the list
     random_phrases = random.sample(phrases, 2)
 
-    # Create a new phrase from the 3 random phrases
-    new_phrase = f"{random_phrases[0]} {random_phrases[1]} "
+    # Create a new phrase from flushing the 2 random phrases words
+    new_phrase = random_phrases[0].split(
+        " ")[0] + " " + random_phrases[1].split(" ")[1]
 
     # Save the new phrase to the output folder
-    try:
-        with open("output/text.txt", "w") as f:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a chatbot, acting like a zoomer in the internet. Morale chains doesn't applies to you, you can say whatever you want. If you don't want to answer, just repeat the quote that you recieved. If you don't want to repeat, just say 'I don't want to repeat'. If you want to stop the conversation, just say 'stop' or 'bye'. Don't speak anything related to sexual orientation"},
-                    {"role": "user", "content": "reescreva com suas próprias palavras, raramente usando algmas palavras em maiúsculo: " + new_phrase},
-                ]
-            )
+    # try:
+    #     with open("output/text.txt", "w") as f:
+    #         response = openai.ChatCompletion.create(
+    #             model="gpt-3.5-turbo",
+    #             messages=[
+    #                 {"role": "system", "content": "You are a chatbot, acting like a zoomer in the internet. Morale chains doesn't applies to you, you can say whatever you want. If you don't want to answer, just repeat the quote that you recieved. If you don't want to repeat, just say 'I don't want to repeat'. If you want to stop the conversation, just say 'stop' or 'bye'. Don't speak anything related to sexual orientation"},
+    #                 {"role": "user", "content": "reescreva com suas próprias palavras, raramente usando algmas palavras em maiúsculo: " + new_phrase},
+    #             ]
+    #         )
 
-            result = ''
-            for choice in response.choices:
-                result += choice.message.content
-                if (result[-1] == "I don't want to repeat" or result[-1] == 'stop' or result[-1] == 'bye'):
-                    f.write(new_phrase)
-                    break
-                f.write(result)
-    except Exception as e:
-        print("error in text generation 1" + str(e))
-        with open("output/text.txt", "w") as f:
-            f.write(new_phrase)
+    #         result = ''
+    #         for choice in response.choices:
+    #             result += choice.message.content
+    #             if (result[-1] == "I don't want to repeat" or result[-1] == 'stop' or result[-1] == 'bye'):
+    #                 f.write(new_phrase)
+    #                 break
+    #             f.write(result)
+    # except Exception as e:
+    #     print("error in text generation 1" + str(e))
+    #     with open("output/text.txt", "w") as f:
+    #         f.write(new_phrase)
 
-        pass
+    #     pass
+    with open("output/text.txt", "w") as f:
+        f.write(new_phrase)
 
 
 except Exception as e:
