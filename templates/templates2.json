@@ -469,5 +469,71 @@
         "size": [527, 264]
       }
     ]
+  },
+  {
+    "template_path": "templates/template41.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [305, 353],
+        "size": [124, 105]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template42.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [30, 340],
+        "size": [325, 375]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template43.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [10, 110],
+        "size": [220, 320]
+      },
+      {
+        "type": "image",
+        "position": [250, 110],
+        "size": [220, 320]
+      },
+      {
+        "type": "image",
+        "position": [490, 110],
+        "size": [220, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template44.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [540, 20],
+        "size": [170, 165]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template45.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [5, 90],
+        "size": [377, 249]
+      },
+      {
+        "type": "text",
+        "position": [483, 110],
+        "font_size": 16,
+        "text_color": "#000"
+      }
+    ]
   }
 ]

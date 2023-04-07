@@ -2,7 +2,7 @@ import json
 import os
 from PIL import Image, ImageDraw, ImageFont
 import random
-import openai
+# import openai
 
 # Set the paths to the source and output images folders
 source_folder = "sources/"
@@ -69,7 +69,7 @@ for element in template["elements"]:
 output_path = os.path.join(output_folder, "output.png")
 template_image.save(output_path)
 
-openai.api_key = os.environ.get('OPENAI_API_KEY')
+# openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 try:
     # Load the phrases from the JSON file
@@ -81,9 +81,11 @@ try:
     # Choose 2 random phrases from the list
     random_phrases = random.sample(phrases, 2)
 
-    # Create a new phrase from flushing the 2 random phrases words
-    new_phrase = random_phrases[0].split(
-        " ")[0] + " " + random_phrases[1].split(" ")[1]
+    # Create a new phrase from flushing the 2 random phrases  together and shuffling the words
+    new_phrase = " ".join(random_phrases)
+    new_phrase = new_phrase.split(" ")
+    random.shuffle(new_phrase)
+    new_phrase = " ".join(new_phrase)
 
     # Save the new phrase to the output folder
     # try:
