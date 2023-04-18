@@ -535,5 +535,109 @@
         "text_color": "#000"
       }
     ]
+  },
+  {
+    "template_path": "templates/template46.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [38, 60],
+        "size": [452, 249]
+      },
+      {
+        "type": "text",
+        "position": [155, 700],
+        "font_size": 30,
+        "text_color": "#b0b5bb"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template47.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 90],
+        "size": [838, 397]
+      },
+      {
+        "type": "image",
+        "position": [0, 595],
+        "size": [838, 367]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template48.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [273, 180],
+        "size": [130, 140]
+      },
+      {
+        "type": "text",
+        "position": [283, 328],
+        "font_size": 20,
+        "text_color": "#000"
+      },
+      {
+        "type": "image",
+        "position": [330, 360],
+        "size": [130, 110]
+      },
+      {
+        "type": "text",
+        "position": [330, 470],
+        "font_size": 20,
+        "text_color": "#000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template49.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [0, 91],
+        "size": [250, 320]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template50.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [20, 240],
+        "size": [400, 400]
+      },
+
+      {
+        "type": "image",
+        "position": [440, 240],
+        "size": [250, 300]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template51.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [460, 680],
+        "size": [250, 180]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template52.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [150, 30],
+        "size": [470, 440]
+      }
+    ]
   }
 ]
