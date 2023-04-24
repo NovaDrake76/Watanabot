@@ -81,8 +81,8 @@ try:
     # Choose 2 random phrases from the list
     random_phrases = random.sample(phrases, 2)
 
-    # Create a new phrase from flushing the 2 random phrases  together and shuffling the words
-    new_phrase = " ".join(random_phrases)
+    # Create a new phrase from flushing the 2 random phrases together and shuffling some words
+    new_phrase = random_phrases[0] + " " + random_phrases[1]
     new_phrase = new_phrase.split(" ")
     random.shuffle(new_phrase)
     new_phrase = " ".join(new_phrase)
