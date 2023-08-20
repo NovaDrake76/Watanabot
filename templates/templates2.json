@@ -4,13 +4,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 245],
-        "size": [350, 470]
+        "position": [
+          0,
+          245
+        ],
+        "size": [
+          350,
+          470
+        ]
       },
       {
         "type": "image",
-        "position": [370, 245],
-        "size": [350, 470]
+        "position": [
+          370,
+          245
+        ],
+        "size": [
+          350,
+          470
+        ]
       }
     ]
   },
@@ -19,8 +31,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [5, 210],
-        "size": [525, 360]
+        "position": [
+          5,
+          210
+        ],
+        "size": [
+          525,
+          360
+        ]
       }
     ]
   },
@@ -29,8 +47,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [450, 380],
-        "size": [600, 311]
+        "position": [
+          450,
+          380
+        ],
+        "size": [
+          600,
+          311
+        ]
       }
     ]
   },
@@ -39,12 +63,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [60, 100],
-        "size": [600, 450]
+        "position": [
+          60,
+          100
+        ],
+        "size": [
+          600,
+          450
+        ]
       },
       {
         "type": "text",
-        "position": [120, 620],
+        "position": [
+          120,
+          620
+        ],
         "font_size": 54,
         "text_color": "#000000"
       }
@@ -55,8 +88,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [200, 140],
-        "size": [300, 320]
+        "position": [
+          200,
+          140
+        ],
+        "size": [
+          300,
+          320
+        ]
       }
     ]
   },
@@ -65,13 +104,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [260, 140],
-        "size": [215, 320]
+        "position": [
+          260,
+          140
+        ],
+        "size": [
+          215,
+          320
+        ]
       },
       {
         "type": "image",
-        "position": [10, 140],
-        "size": [240, 320]
+        "position": [
+          10,
+          140
+        ],
+        "size": [
+          240,
+          320
+        ]
       }
     ]
   },
@@ -80,8 +131,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 180],
-        "size": [524, 360]
+        "position": [
+          0,
+          180
+        ],
+        "size": [
+          524,
+          360
+        ]
       }
     ]
   },
@@ -90,14 +147,26 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 80],
-        "size": [375, 400]
+        "position": [
+          0,
+          80
+        ],
+        "size": [
+          375,
+          400
+        ]
       },
       {
         "type": "mandatoryImage",
         "source": "templateComponents/arrow.png",
-        "position": [300, 200],
-        "size": [150, 75]
+        "position": [
+          300,
+          200
+        ],
+        "size": [
+          150,
+          75
+        ]
       }
     ]
   },
@@ -106,8 +175,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 140],
-        "size": [500, 425]
+        "position": [
+          0,
+          140
+        ],
+        "size": [
+          500,
+          425
+        ]
       }
     ]
   },
@@ -116,12 +191,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [188, 20],
-        "size": [503, 290]
+        "position": [
+          188,
+          20
+        ],
+        "size": [
+          503,
+          290
+        ]
       },
       {
         "type": "text",
-        "position": [235, 353],
+        "position": [
+          235,
+          353
+        ],
         "font_size": 30,
         "text_color": "#ffffff"
       }
@@ -132,13 +216,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 135],
-        "size": [380, 350]
+        "position": [
+          0,
+          135
+        ],
+        "size": [
+          380,
+          350
+        ]
       },
       {
         "type": "image",
-        "position": [380, 135],
-        "size": [370, 350]
+        "position": [
+          380,
+          135
+        ],
+        "size": [
+          370,
+          350
+        ]
       }
     ]
   },
@@ -147,8 +243,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 120],
-        "size": [500, 320]
+        "position": [
+          0,
+          120
+        ],
+        "size": [
+          500,
+          320
+        ]
       }
     ]
   },
@@ -157,18 +259,32 @@
     "elements": [
       {
         "type": "image",
-        "position": [300, 160],
-        "size": [300, 340]
+        "position": [
+          300,
+          160
+        ],
+        "size": [
+          300,
+          340
+        ]
       },
       {
         "type": "image",
-        "position": [0, 160],
-        "size": [300, 340]
+        "position": [
+          0,
+          160
+        ],
+        "size": [
+          300,
+          340
+        ]
       },
-
       {
         "type": "text",
-        "position": [70, 65],
+        "position": [
+          70,
+          65
+        ],
         "font_size": 30,
         "text_color": "#000000"
       }
@@ -179,43 +295,91 @@
     "elements": [
       {
         "type": "image",
-        "position": [70, 22],
-        "size": [250, 200]
+        "position": [
+          70,
+          22
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [440, 22],
-        "size": [250, 200]
+        "position": [
+          440,
+          22
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [70, 270],
-        "size": [250, 200]
+        "position": [
+          70,
+          270
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [440, 270],
-        "size": [250, 200]
+        "position": [
+          440,
+          270
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [70, 533],
-        "size": [250, 200]
+        "position": [
+          70,
+          533
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [440, 533],
-        "size": [250, 200]
+        "position": [
+          440,
+          533
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [70, 790],
-        "size": [250, 200]
+        "position": [
+          70,
+          790
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [440, 790],
-        "size": [250, 207]
+        "position": [
+          440,
+          790
+        ],
+        "size": [
+          250,
+          207
+        ]
       }
     ]
   },
@@ -224,13 +388,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [60, 100],
-        "size": [200, 200]
+        "position": [
+          60,
+          100
+        ],
+        "size": [
+          200,
+          200
+        ]
       },
       {
         "type": "image",
-        "position": [440, 400],
-        "size": [200, 200]
+        "position": [
+          440,
+          400
+        ],
+        "size": [
+          200,
+          200
+        ]
       }
     ]
   },
@@ -239,8 +415,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 268],
-        "size": [278, 240]
+        "position": [
+          0,
+          268
+        ],
+        "size": [
+          278,
+          240
+        ]
       }
     ]
   },
@@ -249,19 +431,30 @@
     "elements": [
       {
         "type": "image",
-        "position": [5, 140],
-        "size": [500, 300]
+        "position": [
+          5,
+          140
+        ],
+        "size": [
+          500,
+          300
+        ]
       }
     ]
   },
-
   {
     "template_path": "templates/template26.png",
     "elements": [
       {
         "type": "image",
-        "position": [12, 140],
-        "size": [500, 280]
+        "position": [
+          12,
+          140
+        ],
+        "size": [
+          500,
+          280
+        ]
       }
     ]
   },
@@ -270,8 +463,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [40, 80],
-        "size": [200, 150],
+        "position": [
+          40,
+          80
+        ],
+        "size": [
+          200,
+          150
+        ],
         "rotation": 15
       }
     ]
@@ -281,18 +480,33 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 90],
-        "size": [365, 310]
+        "position": [
+          0,
+          90
+        ],
+        "size": [
+          365,
+          310
+        ]
       },
       {
         "type": "mandatoryImage",
         "source": "templateComponents/arrow.png",
-        "position": [300, 200],
-        "size": [150, 75]
+        "position": [
+          300,
+          200
+        ],
+        "size": [
+          150,
+          75
+        ]
       },
       {
         "type": "text",
-        "position": [350, 40],
+        "position": [
+          350,
+          40
+        ],
         "font_size": 40,
         "text_color": "#000000"
       }
@@ -303,14 +517,26 @@
     "elements": [
       {
         "type": "image",
-        "position": [500, 270],
-        "size": [550, 700]
+        "position": [
+          500,
+          270
+        ],
+        "size": [
+          550,
+          700
+        ]
       },
       {
         "type": "mandatoryImage",
         "source": "templateComponents/heart.png",
-        "position": [400, 650],
-        "size": [500, 250]
+        "position": [
+          400,
+          650
+        ],
+        "size": [
+          500,
+          250
+        ]
       }
     ]
   },
@@ -319,8 +545,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 0],
-        "size": [522, 490]
+        "position": [
+          0,
+          0
+        ],
+        "size": [
+          522,
+          490
+        ]
       }
     ]
   },
@@ -329,13 +561,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 80],
-        "size": [270, 255]
+        "position": [
+          0,
+          80
+        ],
+        "size": [
+          270,
+          255
+        ]
       },
       {
         "type": "image",
-        "position": [280, 80],
-        "size": [275, 255]
+        "position": [
+          280,
+          80
+        ],
+        "size": [
+          275,
+          255
+        ]
       }
     ]
   },
@@ -344,12 +588,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [430, 120],
-        "size": [300, 300]
+        "position": [
+          430,
+          120
+        ],
+        "size": [
+          300,
+          300
+        ]
       },
       {
         "type": "text",
-        "position": [265, 112],
+        "position": [
+          265,
+          112
+        ],
         "font_size": 30,
         "text_color": "#000000"
       }
@@ -360,14 +613,26 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 180],
-        "size": [720, 350]
+        "position": [
+          0,
+          180
+        ],
+        "size": [
+          720,
+          350
+        ]
       },
       {
         "type": "mandatoryImage",
         "source": "templateComponents/facebook.png",
-        "position": [0, 0],
-        "size": [720, 676]
+        "position": [
+          0,
+          0
+        ],
+        "size": [
+          720,
+          676
+        ]
       }
     ]
   },
@@ -376,18 +641,30 @@
     "elements": [
       {
         "type": "image",
-        "position": [350, 30],
-        "size": [250, 200]
+        "position": [
+          350,
+          30
+        ],
+        "size": [
+          250,
+          200
+        ]
       },
       {
         "type": "text",
-        "position": [465, 330],
+        "position": [
+          465,
+          330
+        ],
         "font_size": 26,
         "text_color": "#000000"
       },
       {
         "type": "text",
-        "position": [465, 360],
+        "position": [
+          465,
+          360
+        ],
         "font_size": 26,
         "text_color": "#000000"
       }
@@ -398,12 +675,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 314],
-        "size": [500, 500]
+        "position": [
+          0,
+          314
+        ],
+        "size": [
+          500,
+          500
+        ]
       },
       {
         "type": "text",
-        "position": [380, 8],
+        "position": [
+          380,
+          8
+        ],
         "font_size": 90,
         "text_color": "#000000"
       }
@@ -414,12 +700,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 167],
-        "size": [720, 550]
+        "position": [
+          0,
+          167
+        ],
+        "size": [
+          720,
+          550
+        ]
       },
       {
         "type": "text",
-        "position": [270, 120],
+        "position": [
+          270,
+          120
+        ],
         "font_size": 30,
         "text_color": "#fff"
       }
@@ -430,13 +725,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [10, 120],
-        "size": [700, 400]
+        "position": [
+          10,
+          120
+        ],
+        "size": [
+          700,
+          400
+        ]
       },
       {
         "type": "image",
-        "position": [160, 28],
-        "size": [230, 70]
+        "position": [
+          160,
+          28
+        ],
+        "size": [
+          230,
+          70
+        ]
       }
     ]
   },
@@ -445,8 +752,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [55, 205],
-        "size": [204, 204]
+        "position": [
+          55,
+          205
+        ],
+        "size": [
+          204,
+          204
+        ]
       }
     ]
   },
@@ -455,8 +768,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [67, 85],
-        "size": [300, 255]
+        "position": [
+          67,
+          85
+        ],
+        "size": [
+          300,
+          255
+        ]
       }
     ]
   },
@@ -465,8 +784,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 200],
-        "size": [527, 264]
+        "position": [
+          0,
+          200
+        ],
+        "size": [
+          527,
+          264
+        ]
       }
     ]
   },
@@ -475,8 +800,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [305, 353],
-        "size": [124, 105]
+        "position": [
+          305,
+          353
+        ],
+        "size": [
+          124,
+          105
+        ]
       }
     ]
   },
@@ -485,8 +816,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [30, 340],
-        "size": [325, 375]
+        "position": [
+          30,
+          340
+        ],
+        "size": [
+          325,
+          375
+        ]
       }
     ]
   },
@@ -495,18 +832,36 @@
     "elements": [
       {
         "type": "image",
-        "position": [10, 110],
-        "size": [220, 320]
+        "position": [
+          10,
+          110
+        ],
+        "size": [
+          220,
+          320
+        ]
       },
       {
         "type": "image",
-        "position": [250, 110],
-        "size": [220, 320]
+        "position": [
+          250,
+          110
+        ],
+        "size": [
+          220,
+          320
+        ]
       },
       {
         "type": "image",
-        "position": [490, 110],
-        "size": [220, 320]
+        "position": [
+          490,
+          110
+        ],
+        "size": [
+          220,
+          320
+        ]
       }
     ]
   },
@@ -515,8 +870,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [540, 20],
-        "size": [170, 165]
+        "position": [
+          540,
+          20
+        ],
+        "size": [
+          170,
+          165
+        ]
       }
     ]
   },
@@ -525,12 +886,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [5, 90],
-        "size": [377, 249]
+        "position": [
+          5,
+          90
+        ],
+        "size": [
+          377,
+          249
+        ]
       },
       {
         "type": "text",
-        "position": [483, 110],
+        "position": [
+          483,
+          110
+        ],
         "font_size": 16,
         "text_color": "#000"
       }
@@ -541,12 +911,21 @@
     "elements": [
       {
         "type": "image",
-        "position": [38, 60],
-        "size": [452, 249]
+        "position": [
+          38,
+          60
+        ],
+        "size": [
+          452,
+          249
+        ]
       },
       {
         "type": "text",
-        "position": [155, 700],
+        "position": [
+          155,
+          700
+        ],
         "font_size": 30,
         "text_color": "#b0b5bb"
       }
@@ -557,13 +936,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 90],
-        "size": [838, 397]
+        "position": [
+          0,
+          90
+        ],
+        "size": [
+          838,
+          397
+        ]
       },
       {
         "type": "image",
-        "position": [0, 595],
-        "size": [838, 367]
+        "position": [
+          0,
+          595
+        ],
+        "size": [
+          838,
+          367
+        ]
       }
     ]
   },
@@ -572,23 +963,41 @@
     "elements": [
       {
         "type": "image",
-        "position": [273, 180],
-        "size": [130, 140]
+        "position": [
+          273,
+          180
+        ],
+        "size": [
+          130,
+          140
+        ]
       },
       {
         "type": "text",
-        "position": [283, 328],
+        "position": [
+          283,
+          328
+        ],
         "font_size": 20,
         "text_color": "#000"
       },
       {
         "type": "image",
-        "position": [330, 360],
-        "size": [130, 110]
+        "position": [
+          330,
+          360
+        ],
+        "size": [
+          130,
+          110
+        ]
       },
       {
         "type": "text",
-        "position": [330, 470],
+        "position": [
+          330,
+          470
+        ],
         "font_size": 20,
         "text_color": "#000"
       }
@@ -599,8 +1008,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [0, 91],
-        "size": [250, 320]
+        "position": [
+          0,
+          91
+        ],
+        "size": [
+          250,
+          320
+        ]
       }
     ]
   },
@@ -609,14 +1024,25 @@
     "elements": [
       {
         "type": "image",
-        "position": [20, 240],
-        "size": [400, 400]
+        "position": [
+          20,
+          240
+        ],
+        "size": [
+          400,
+          400
+        ]
       },
-
       {
         "type": "image",
-        "position": [440, 240],
-        "size": [250, 300]
+        "position": [
+          440,
+          240
+        ],
+        "size": [
+          250,
+          300
+        ]
       }
     ]
   },
@@ -625,8 +1051,14 @@
     "elements": [
       {
         "type": "image",
-        "position": [460, 680],
-        "size": [250, 180]
+        "position": [
+          460,
+          680
+        ],
+        "size": [
+          250,
+          180
+        ]
       }
     ]
   },
@@ -635,8 +1067,41 @@
     "elements": [
       {
         "type": "image",
-        "position": [150, 30],
-        "size": [470, 440]
+        "position": [
+          150,
+          30
+        ],
+        "size": [
+          470,
+          440
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template53.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          30,
+          550
+        ],
+        "size": [
+          300,
+          300
+        ]
+      },
+      {
+        "type": "image",
+        "position": [
+          370,
+          550
+        ],
+        "size": [
+          300,
+          300
+        ]
       }
     ]
   }
