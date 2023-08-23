@@ -1104,5 +1104,21 @@
         ]
       }
     ]
+  },
+  {
+    "template_path": "templates/template54.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          0
+        ],
+        "size": [
+          335,
+          180
+        ]
+      }
+    ]
   }
 ]
