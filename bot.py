@@ -8,6 +8,12 @@ import boto3
 # Initialize S3 client
 s3 = boto3.client('s3')
 
+session = boto3.Session(
+    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID')
+    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY')
+    region_name='South America (Sao Paulo)'
+)
+
 def get_random_s3_image(bucket_name, folder_name):
     # List all objects in a specific folder within the bucket
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=f'{folder_name}/')
