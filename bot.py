@@ -9,8 +9,8 @@ import boto3
 s3 = boto3.client('s3')
 
 session = boto3.Session(
-    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID')
-    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY')
+    aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
     region_name='South America (Sao Paulo)'
 )
 
