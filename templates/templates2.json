@@ -1120,5 +1120,167 @@
         ]
       }
     ]
+  },
+  {
+    "template_path": "templates/template55.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          220,
+          290
+        ],
+        "size": [
+          300,
+          250
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template56.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          170
+        ],
+        "size": [
+          720,
+          552
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template57.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          0
+        ],
+        "size": [
+          230,
+          117
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template58.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          195
+        ],
+        "size": [
+          720,
+          410
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template59.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          52
+        ],
+        "size": [
+          385,
+          490
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template60.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          100,
+          368
+        ],
+        "size": [
+          379,
+          395
+        ]
+      },
+      {
+        "type": "text",
+        "position": [
+          564,
+          165
+        ],
+        "font_size": 30,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template61.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          20,
+          250
+        ],
+        "size": [
+          680,
+          650
+        ]
+      } 
+    ]
+  },
+  {
+    "template_path": "templates/template62.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          65,
+          220
+        ],
+        "size": [
+          325,
+          353
+        ]
+      } 
+    ]
+  },
+  {
+    "template_path": "templates/template63.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          275,
+          253
+        ],
+        "size": [
+          368,
+          198
+        ]
+      },
+      {
+        "type": "text",
+        "position": [
+          412,
+          52
+        ],
+        "font_size": 50,
+        "text_color": "#000000"
+      } 
+    ]
   }
 ]
