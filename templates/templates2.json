@@ -609,34 +609,6 @@
     ]
   },
   {
-    "template_path": "templates/template33.png",
-    "elements": [
-      {
-        "type": "image",
-        "position": [
-          0,
-          180
-        ],
-        "size": [
-          720,
-          350
-        ]
-      },
-      {
-        "type": "mandatoryImage",
-        "source": "templateComponents/facebook.png",
-        "position": [
-          0,
-          0
-        ],
-        "size": [
-          720,
-          676
-        ]
-      }
-    ]
-  },
-  {
     "template_path": "templates/template34.png",
     "elements": [
       {
@@ -1089,7 +1061,7 @@
         ],
         "size": [
           300,
-          300
+          280
         ]
       },
       {
@@ -1100,7 +1072,7 @@
         ],
         "size": [
           300,
-          300
+          280
         ]
       }
     ]
@@ -1239,7 +1211,7 @@
           680,
           650
         ]
-      } 
+      }
     ]
   },
   {
@@ -1255,7 +1227,7 @@
           325,
           353
         ]
-      } 
+      }
     ]
   },
   {
@@ -1280,7 +1252,7 @@
         ],
         "font_size": 50,
         "text_color": "#000000"
-      } 
+      }
     ]
   }
 ]
