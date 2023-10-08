@@ -1110,22 +1110,6 @@
     ]
   },
   {
-    "template_path": "templates/template56.png",
-    "elements": [
-      {
-        "type": "image",
-        "position": [
-          0,
-          170
-        ],
-        "size": [
-          720,
-          552
-        ]
-      }
-    ]
-  },
-  {
     "template_path": "templates/template57.png",
     "elements": [
       {
@@ -1252,6 +1236,154 @@
         ],
         "font_size": 50,
         "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template64.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          280,
+          105
+        ],
+        "size": [
+          247,
+          144
+        ]
+      },
+      {
+        "type": "image",
+        "position": [
+          280,
+          407
+        ],
+        "size": [
+          247,
+          123
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template65.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          123,
+          232
+        ],
+        "size": [
+          404,
+          384
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template67.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          150
+        ],
+        "size": [
+          655,
+          538
+        ]
+      },
+      {
+        "type": "text",
+        "position": [
+          20,
+          30
+        ],
+        "font_size": 50,
+        "text_color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template68.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          375,
+          7
+        ],
+        "size": [
+          585,
+          507
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template69.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          152
+        ],
+        "size": [
+          723,
+          704
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template70.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          298
+        ],
+        "size": [
+          724,
+          410
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template71.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          64
+        ],
+        "size": [
+          400,
+          420
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template72.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          401,
+          44
+        ],
+        "size": [
+          240,
+          250
+        ]
       }
     ]
   }

@@ -53,6 +53,12 @@ if (page_access_token != None):
         print(f'Failed to upload image: {response["error"]["message"]}')
     else:
         print('Image uploaded successfully')
+        #send a post to https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn
+
+        requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn", data={
+            "content": "New post: " + text,
+        })
+
 
 else:
     print('Failed to upload image: No page access token found')

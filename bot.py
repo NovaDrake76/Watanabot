@@ -4,6 +4,7 @@ import io
 from PIL import Image, ImageDraw, ImageFont
 import random
 import boto3
+import requests
 
 # Initialize S3 client
 s3 = boto3.client('s3')
