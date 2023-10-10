@@ -53,11 +53,22 @@ if (page_access_token != None):
         print(f'Failed to upload image: {response["error"]["message"]}')
     else:
         print('Image uploaded successfully')
-        #send a post to https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn
 
-        requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn", data={
-            "content": "New post: " + text,
-        })
+        payload = {
+           "content": "New post: " + text,
+        }
+        # Define the image to be sent
+        file = {
+            "file": ("output/output.png".split('/')[-1], open("output/output.png", 'rb'))
+        }
+
+        # Send POST request to Discord webhook
+        response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+                                data=payload,
+                                files=file)
+        
+        if response.status_code != 204: 
+            print(f"Failed to send image to Discord. Status code: {response.status_code}. Response text: {response.text}")
 
 
 else:
