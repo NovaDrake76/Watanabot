@@ -87,6 +87,15 @@ template_image.save(output_path)
 # openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 try:
+    # try:
+    #     requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn", data={
+    #         "content": "tô ficando meio pá das ideias 🥰🥰",
+    #     })
+
+    # except:
+    #     print("error in discord webhook")
+        
+        
     # Load the phrases from the JSON file
     with open("phrases.json", "r", encoding="UTF-8") as f:
         phrases = json.load(f)
