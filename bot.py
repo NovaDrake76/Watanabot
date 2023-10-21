@@ -59,7 +59,7 @@ for element in template["elements"]:
         use_video = False  # Initialize as False
 
         if not video_used:  # Only consider using a video if one hasn't been used yet
-            use_video = random.random() < 1  # Adjust the probability as you like
+            use_video = random.random() < 0.5  # Adjust the probability as you like
 
         if use_video:
             print("Using video for element number",i)
