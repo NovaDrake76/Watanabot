@@ -1,12 +1,14 @@
 import json
 import os
-import io
-from PIL import Image, ImageDraw, ImageFont
 import random
+from PIL import Image, ImageDraw, ImageFont
 import boto3
-import requests
+from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip, TextClip
+import io
+import numpy as np
+import requests 
 
-# Initialize S3 client
+# Initialize the S3 client
 s3 = boto3.client('s3')
 
 session = boto3.Session(
@@ -15,105 +17,131 @@ session = boto3.Session(
     region_name='South America (Sao Paulo)'
 )
 
+# Function to get a random image from S3
 def get_random_s3_image(bucket_name, folder_name):
-    # List all objects in a specific folder within the bucket
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=f'{folder_name}/')
     all_objects = response['Contents']
-
-    # Remove the folder itself from the list (it is also considered an 'object' in S3)
     all_objects = [obj for obj in all_objects if not obj['Key'].endswith('/')]
-    
-    # Randomly select an object (file)
     random_file = random.choice(all_objects)
     random_file_key = random_file['Key']
-
-    # Download the object to memory
     obj = s3.get_object(Bucket=bucket_name, Key=random_file_key)
-    return io.BytesIO(obj['Body'].read()), random_file_key  # return both the BytesIO object and the file key
+    return io.BytesIO(obj['Body'].read()), random_file_key
 
+# Function to get a random video from a JSON file
+def get_random_video():
+    with open('sources/videoSources.json', 'r') as f:
+        video_data = json.load(f)
+    return random.choice(video_data['videos'])
 
-# Your existing paths and setup
-source_folder = "sources/"
-output_folder = "output/"
+composite_elements = []
 
-# Load the template specifications from the JSON file
-with open("templates/templates.json", "r") as f:
+# Read template specifications and choose a random template
+with open('templates/templates.json', 'r') as f:
     templates = json.load(f)
-
+    
 template = random.choice(templates)
 template_path = template["template_path"]
 template_image = Image.open(template_path)
-
 draw = ImageDraw.Draw(template_image)
 
-# Loop over each element in the template
-for element in template["elements"]:
-    if element["type"] == "image":
-        # Get a random source image from S3 bucket
-        source_image_stream, random_file_key = get_random_s3_image('watanabot', 'sources')
-        source_image = Image.open(source_image_stream)
-        
-        # Resize and place the source image
-        source_image = source_image.resize(element["size"])
-        template_image.paste(source_image, element["position"])
+has_video = False  # Flag to check if any video is used
+video_used = False  # Flag to indicate if a video has already been chosen for this post
+random_image_key = None  # Placeholder for the random image data
 
-    elif element["type"] == "text":
-        # Set up font size
+i  = 0
+# Loop through each element in the template to prepare sources
+for element in template["elements"]:
+    element_type = element["type"]
+    position = tuple(element["position"])
+    size = tuple(element["size"]) if "size" in element else None
+
+    if element_type == "image":
+        use_video = False  # Initialize as False
+
+        if not video_used:  # Only consider using a video if one hasn't been used yet
+            use_video = random.random() < 1  # Adjust the probability as you like
+
+        if use_video:
+            print("Using video for element number",i)
+            video_used = True  # Mark that a video has been used
+            has_video = True
+            video_data = get_random_video()
+            video_url = video_data['url']
+            r = requests.get(video_url)
+            temp_video_path = "temp_video.mp4"
+            with open(temp_video_path, 'wb') as f:
+                f.write(r.content)
+            video_clip = VideoFileClip(temp_video_path)
+            video_clip_resized = video_clip.resize(newsize=size)
+            composite_elements.append(video_clip_resized.set_position(position))
+
+        else:
+            random_image_data, random_image_key = get_random_s3_image('watanabot', 'sources')
+            random_image = Image.open(random_image_data)
+            random_image_resized = random_image.resize(size)
+
+            if has_video:
+                img_clip = ImageClip(np.array(random_image_resized)).set_duration(video_clip.duration)
+                composite_elements.append(img_clip.set_position(position))
+            else:
+                template_image.paste(random_image_resized, position)
+
+    elif element_type == "text":
+        
         font_size = element["font_size"]
 
         # Set up the text color
         text_color = element["text_color"]
 
-        text = random_file_key.split("/")[-1].split(".")[0]
-        # Draw the text onto the final image
-
         font = ImageFont.truetype(r'arial.ttf', font_size)
-        draw.text(element["position"], text, fill=text_color, font=font)
+        if has_video:
+            text = video_data['title']
+            # font_path = r'arial.ttf'
+            # text_clip = TextClip(text, color=text_color, font=font_path, fontsize=font_size)
+            # text_clip_resized = text_clip.resize(newsize=size)
+            # composite_elements.append(text_clip_resized.set_position(position))
 
-    elif element["type"] == "mandatoryImage":
+        else:
+            text = random_image_key.split("/")[-1].split(".")[0]
+            draw.text(element["position"], text, fill=text_color, font=font)
+    
+    elif element_type == "mandatoryImage":
         # Load the source image
         source_image = Image.open(element["source"])
 
         # Resize the source image to fit the template
-        source_image = source_image.resize(element["size"])
+        source_image_resized = source_image.resize(size)
 
-        # remove black background, make the background transparent andPaste the source image onto the final image
-        template_image.paste(source_image, element["position"], source_image)
+        if has_video:  # If there is a video, make an ImageClip
+            img_clip = ImageClip(np.array(source_image_resized)).set_duration(video_clip.duration)
+            composite_elements.append(img_clip.set_position(position))
 
-# Save the final image
-output_path = os.path.join(output_folder, "output.png")
-template_image.save(output_path)
+        else:  # If there is no video, paste it directly onto the template image
+            template_image.paste(source_image_resized, position, source_image_resized)
 
-# openai.api_key = os.environ.get('OPENAI_API_KEY')
+            
 
-try:
-    # try:
-    #     requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn", data={
-    #         "content": "tô ficando meio pá das ideias 🥰🥰",
-    #     })
+# Check if any video elements are present
+if has_video:
+    template_image_clip = ImageClip(template_path).set_duration(video_clip.duration)
+    composite_elements.insert(0, template_image_clip)
+    final_video = CompositeVideoClip(composite_elements).set_duration(video_clip.duration)
+    output_path = "output/output.mp4"
+    final_video.write_videofile(output_path, codec="libx264")
 
-    # except:
-    #     print("error in discord webhook")
+else:
+    output_path = "output/output.png"
+    template_image.save(output_path)
+
+# try:
+  
+#     file = {'file': open(output_path, 'rb')}
+
+#     # Send POST request to Discord webhook
+#     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+#                             files=file)
+    
+# except:
+#         print("error in discord webhook")
         
         
-    # Load the phrases from the JSON file
-    with open("phrases.json", "r", encoding="UTF-8") as f:
-        phrases = json.load(f)
-
-        phrases = phrases["phrases"]
-
-    # Choose 2 random phrases from the list
-    random_phrases = random.sample(phrases, 2)
-
-    # Create a new phrase from flushing the 2 random phrases together and shuffling some words
-    new_phrase = random_phrases[0] + " " + random_phrases[1]
-
-    with open("output/text.txt", "w") as f:
-        f.write(new_phrase)
-
-
-except Exception as e:
-    print("error in text generation 2" + str(e))
-    with open("output/text.txt", "w") as f:
-        f.write("")
-    pass
