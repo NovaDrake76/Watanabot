@@ -133,15 +133,43 @@ else:
     output_path = "output/output.png"
     template_image.save(output_path)
 
+try:
+    # Load the phrases from the JSON file
+    with open("phrases.json", "r", encoding="UTF-8") as f:
+        phrases = json.load(f)
+
+        phrases = phrases["phrases"]
+
+    # Choose 2 random phrases from the list
+    random_phrases = random.sample(phrases, 2)
+
+    # Create a new phrase from flushing the 2 random phrases together and shuffling some words
+    new_phrase = random_phrases[0] + " " + random_phrases[1]
+
+    with open("output/text.txt", "w") as f:
+        f.write(new_phrase)
+
+
+except Exception as e:
+    print("error in text generation 2" + str(e))
+    with open("output/text.txt", "w") as f:
+        f.write("")
+    pass
+
+
 # try:
   
-#     file = {'file': open(output_path, 'rb')}
+#     payload = {
+#             "content": "Boa Noite",
+#     }
+
+#     # file = {'file': open(output_path, 'rb')}
 
 #     # Send POST request to Discord webhook
 #     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
-#                             files=file)
+#                                   data=payload,
+#                             # files=file)
+#                             )
     
 # except:
 #         print("error in discord webhook")
-        
-        
