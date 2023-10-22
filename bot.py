@@ -127,7 +127,7 @@ if has_video:
     output_path = "output/output.mp4"
 
     with open('output/type.txt', 'w') as f:
-        f.write('video')
+        f.write('mp4')
 
     # Close video resources
     for resource in resources_to_close:
@@ -137,7 +137,7 @@ else:
     output_path = "output/output.png"
     template_image.save(output_path)
     with open('output/type.txt', 'w') as f:
-        f.write('image')
+        f.write('png')
 
 template_image.close()
 

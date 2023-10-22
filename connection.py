@@ -19,7 +19,7 @@ try:
         file_type = f.read().strip()
 except FileNotFoundError:
     print("Could not find 'type.txt'. Defaulting to image.")
-    file_type = 'image'
+    file_type = 'png'
 
 output_path = f'output/output.{file_type}'
 
@@ -31,9 +31,9 @@ if page_access_token:
     except:
         text = ""
 
-    if file_type == 'image':
+    if file_type == 'png':
         response = graph.put_photo(image=open(output_path, 'rb'), message=text)
-    elif file_type == 'video':
+    elif file_type == 'mp4':
         video = open(output_path, 'rb')
         response = graph.put_object(
             parent_object='me',
