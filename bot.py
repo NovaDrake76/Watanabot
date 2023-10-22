@@ -6,7 +6,7 @@ import boto3
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip, TextClip
 import io
 import numpy as np
-import requests 
+import requests
 
 # Initialize the S3 client
 s3 = boto3.client('s3')
@@ -38,7 +38,7 @@ composite_elements = []
 # Read template specifications and choose a random template
 with open('templates/templates.json', 'r') as f:
     templates = json.load(f)
-    
+
 template = random.choice(templates)
 template_path = template["template_path"]
 template_image = Image.open(template_path)
@@ -46,7 +46,9 @@ draw = ImageDraw.Draw(template_image)
 
 has_video = False  # Flag to check if any video is used
 video_used = False  # Flag to indicate if a video has already been chosen for this post
-random_image_key = None  # Placeholder for the random image data
+
+# List to collect resources that need to be closed later
+resources_to_close = []
 
 i  = 0
 # Loop through each element in the template to prepare sources
@@ -62,64 +64,58 @@ for element in template["elements"]:
             use_video = random.random() < 0.5  # Adjust the probability as you like
 
         if use_video:
-            print("Using video for element number",i)
+            print("Using video for element number", i)
             video_used = True  # Mark that a video has been used
             has_video = True
             video_data = get_random_video()
             video_url = video_data['url']
-            r = requests.get(video_url)
-            temp_video_path = "temp_video.mp4"
-            with open(temp_video_path, 'wb') as f:
-                f.write(r.content)
-            video_clip = VideoFileClip(temp_video_path)
+            r = requests.get(video_url, stream=True)
+            r.raise_for_status()
+            with open("temp_video.mp4", 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            video_clip = VideoFileClip("temp_video.mp4")
             video_clip_resized = video_clip.resize(newsize=size)
             composite_elements.append(video_clip_resized.set_position(position))
+            resources_to_close.append(video_clip)  # Add to resources to be closed later
 
         else:
             random_image_data, random_image_key = get_random_s3_image('watanabot', 'sources')
             random_image = Image.open(random_image_data)
             random_image_resized = random_image.resize(size)
+            random_image.close()
 
             if has_video:
                 img_clip = ImageClip(np.array(random_image_resized)).set_duration(video_clip.duration)
                 composite_elements.append(img_clip.set_position(position))
+                img_clip.close()
             else:
                 template_image.paste(random_image_resized, position)
 
     elif element_type == "text":
-        
         font_size = element["font_size"]
-
-        # Set up the text color
         text_color = element["text_color"]
+        font = ImageFont.truetype('arial.ttf', font_size)
 
-        font = ImageFont.truetype(r'arial.ttf', font_size)
         if has_video:
             text = video_data['title']
-            # font_path = r'arial.ttf'
-            # text_clip = TextClip(text, color=text_color, font=font_path, fontsize=font_size)
-            # text_clip_resized = text_clip.resize(newsize=size)
-            # composite_elements.append(text_clip_resized.set_position(position))
-
         else:
             text = random_image_key.split("/")[-1].split(".")[0]
             draw.text(element["position"], text, fill=text_color, font=font)
-    
+
     elif element_type == "mandatoryImage":
-        # Load the source image
         source_image = Image.open(element["source"])
-
-        # Resize the source image to fit the template
         source_image_resized = source_image.resize(size)
+        source_image.close()
 
-        if has_video:  # If there is a video, make an ImageClip
+        if has_video:
             img_clip = ImageClip(np.array(source_image_resized)).set_duration(video_clip.duration)
             composite_elements.append(img_clip.set_position(position))
+            img_clip.close()
+        else:
+            template_image.paste(source_image_resized, position)
 
-        else:  # If there is no video, paste it directly onto the template image
-            template_image.paste(source_image_resized, position, source_image_resized)
-
-            
+    i += 1
 
 # Check if any video elements are present
 if has_video:
@@ -129,9 +125,15 @@ if has_video:
     output_path = "output/output.mp4"
     final_video.write_videofile(output_path, codec="libx264")
 
+    # Close video resources
+    for resource in resources_to_close:
+        resource.reader.close()
+        resource.audio.reader.close_proc()
 else:
     output_path = "output/output.png"
     template_image.save(output_path)
+
+template_image.close()
 
 try:
     # Load the phrases from the JSON file
