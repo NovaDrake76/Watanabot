@@ -13,9 +13,15 @@ graph = facebook.GraphAPI(page_access_token)
 session = requests.Session()
 session.verify = False
 
-# Determine whether it's an image or video based on the file extension
-output_path = 'output/output.png'  # Change this to 'output/output.mp4' for video
-file_type = output_path.split('.')[-1]
+# Determine whether it's an image or video based on the information written by bot.py
+try:
+    with open('output/type.txt', 'r') as f:
+        file_type = f.read().strip()
+except FileNotFoundError:
+    print("Could not find 'type.txt'. Defaulting to image.")
+    file_type = 'image'
+
+output_path = f'output/output.{file_type}'
 
 if page_access_token:
 
@@ -25,9 +31,9 @@ if page_access_token:
     except:
         text = ""
 
-    if file_type == 'png':
+    if file_type == 'image':
         response = graph.put_photo(image=open(output_path, 'rb'), message=text)
-    elif file_type == 'mp4':
+    elif file_type == 'video':
         video = open(output_path, 'rb')
         response = graph.put_object(
             parent_object='me',

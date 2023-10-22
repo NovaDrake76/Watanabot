@@ -124,6 +124,10 @@ if has_video:
     final_video = CompositeVideoClip(composite_elements).set_duration(video_clip.duration)
     output_path = "output/output.mp4"
     final_video.write_videofile(output_path, codec="libx264")
+    output_path = "output/output.mp4"
+
+    with open('output/type.txt', 'w') as f:
+        f.write('video')
 
     # Close video resources
     for resource in resources_to_close:
@@ -132,6 +136,8 @@ if has_video:
 else:
     output_path = "output/output.png"
     template_image.save(output_path)
+    with open('output/type.txt', 'w') as f:
+        f.write('image')
 
 template_image.close()
 
