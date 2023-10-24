@@ -94,6 +94,15 @@ try:
 
     # except:
     #     print("error in discord webhook")
+    # try:
+    #     requests.post("https://discord.com/api/webhooks/1160929462402170920/BrQ-Nh4CHdTeggROLLUgZaKcsID2f51OlLGj_WfeCt2_edd5_4omLuDU9V8-O7lKAS2C", data={
+    #         "content": "New rule added: Agora é proibido <@487714418646450184> ficar sozinho na call por mais de 30 minutos.",
+    #     })
+
+    # except:
+    #     print("error in discord webhook")
+        
+        
         
         
     # Load the phrases from the JSON file
