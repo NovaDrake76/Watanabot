@@ -67,7 +67,7 @@ for element in template["elements"]:
     size = tuple(element["size"]) if "size" in element else None
 
     if element_type == "image":
-        use_video = random.random() < 0.5  # Adjust the probability as you like
+        use_video = random.random() < 0.9  # Adjust the probability as you like
 
         if use_video and not has_video:
             has_video = True
@@ -116,9 +116,14 @@ composite_elements.insert(0, img_clip)
 if has_video:
     final_video = CompositeVideoClip(composite_elements)
     final_video.write_videofile("output/output.mp4", codec="libx264")
+    with open("output/type.txt", "w") as f:
+        f.write("mp4")
+
 else:
     final_image = CompositeVideoClip(composite_elements).set_duration(1)
     final_image.save_frame("output/output.png", t=0)
+    with open("output/type.txt", "w") as f:
+        f.write("png")
 
 template_image.close()
 
