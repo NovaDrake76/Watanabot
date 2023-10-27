@@ -33,7 +33,8 @@ if page_access_token:
 
     if file_type == 'png':
         response = graph.put_photo(image=open(output_path, 'rb'), message=text)
-    # elif file_type == 'mp4':
+    elif file_type == 'mp4':
+        response = True
     #     video = open(output_path, 'rb')
     #     response = graph.put_object(
     #         parent_object='me',
