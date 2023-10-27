@@ -33,15 +33,15 @@ if page_access_token:
 
     if file_type == 'png':
         response = graph.put_photo(image=open(output_path, 'rb'), message=text)
-    elif file_type == 'mp4':
-        video = open(output_path, 'rb')
-        response = graph.put_object(
-            parent_object='me',
-            connection_name='videos',
-            source=video.read(),
-            description=text
-        )
-        video.close()
+    # elif file_type == 'mp4':
+    #     video = open(output_path, 'rb')
+    #     response = graph.put_object(
+    #         parent_object='me',
+    #         connection_name='videos',
+    #         source=video.read(),
+    #         description=text
+    #     )
+    #     video.close()
 
     if response is None:
         print('Failed to upload')

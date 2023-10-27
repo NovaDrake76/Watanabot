@@ -1,12 +1,14 @@
+import io
 import json
 import os
-import io
-from PIL import Image, ImageDraw, ImageFont
 import random
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont
 import boto3
+from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 import requests
 
-# Initialize S3 client
+# Initialize the S3 client
 s3 = boto3.client('s3')
 
 session = boto3.Session(
@@ -15,96 +17,112 @@ session = boto3.Session(
     region_name='South America (Sao Paulo)'
 )
 
+# Function to get a random image from S3
 def get_random_s3_image(bucket_name, folder_name):
-    # List all objects in a specific folder within the bucket
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=f'{folder_name}/')
     all_objects = response['Contents']
-
-    # Remove the folder itself from the list (it is also considered an 'object' in S3)
     all_objects = [obj for obj in all_objects if not obj['Key'].endswith('/')]
-    
-    # Randomly select an object (file)
     random_file = random.choice(all_objects)
     random_file_key = random_file['Key']
-
-    # Download the object to memory
     obj = s3.get_object(Bucket=bucket_name, Key=random_file_key)
-    return io.BytesIO(obj['Body'].read()), random_file_key  # return both the BytesIO object and the file key
+    return io.BytesIO(obj['Body'].read()), random_file_key
 
+# Function to get a random video from a JSON file
+def get_random_video():
+    with open('sources/videoSources.json', 'r') as f:
+        video_data = json.load(f)
+    return random.choice(video_data['videos'])
 
-# Your existing paths and setup
-source_folder = "sources/"
-output_folder = "output/"
+composite_elements = []
+has_video = False  # Flag to check if any video is used
+video_duration = None  # Store the duration of the video
 
-# Load the template specifications from the JSON file
-with open("templates/templates.json", "r") as f:
+try:
+    # Load the phrases from the JSON file
+    with open("phrases.json", "r", encoding="utf-8") as f:  # Add encoding here
+        phrases = json.load(f)
+        phrases = phrases["phrases"]
+    random_phrases = random.sample(phrases, 2)
+    new_phrase = random_phrases[0] + " " + random_phrases[1]
+    with open("output/text.txt", "w", encoding="utf-8") as f:  # Add encoding here
+        f.write(new_phrase)
+except Exception as e:
+    print("error in text generation: " + str(e))
+    with open("output/text.txt", "w") as f:
+        f.write("")
+
+# Read template specifications and choose a random template
+with open('templates/templates.json', 'r') as f:
     templates = json.load(f)
 
 template = random.choice(templates)
 template_path = template["template_path"]
 template_image = Image.open(template_path)
-
 draw = ImageDraw.Draw(template_image)
 
-# Loop over each element in the template
+# Loop through each element in the template to prepare sources
 for element in template["elements"]:
-    if element["type"] == "image":
-        # Get a random source image from S3 bucket
-        source_image_stream, random_file_key = get_random_s3_image('watanabot', 'sources')
-        source_image = Image.open(source_image_stream)
-        
-        # Resize and place the source image
-        source_image = source_image.resize(element["size"])
-        template_image.paste(source_image, element["position"])
+    element_type = element["type"]
+    position = tuple(element["position"])
+    size = tuple(element["size"]) if "size" in element else None
 
-    elif element["type"] == "text":
-        # Set up font size
+    if element_type == "image":
+        use_video = random.random() < 0.5  # Adjust the probability as you like
+
+        if use_video and not has_video:
+            has_video = True
+            video_data = get_random_video()
+            video_url = video_data['url']
+            r = requests.get(video_url, stream=True)
+            r.raise_for_status()
+            with open("temp_video.mp4", 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            video_clip = VideoFileClip("temp_video.mp4").resize(newsize=size)
+            video_duration = video_clip.duration
+            composite_elements.append(video_clip.set_position(position))
+        else:
+            image_data, image_key = get_random_s3_image('watanabot', 'sources')
+            image = Image.open(image_data).resize(size)
+            img_array = np.array(image)
+            img_clip = ImageClip(img_array, duration=video_duration).set_position(position)
+            composite_elements.append(img_clip)
+
+    elif element_type == "text":
         font_size = element["font_size"]
-
-        # Set up the text color
         text_color = element["text_color"]
+        font = ImageFont.truetype('arial.ttf', font_size)
 
-        text = random_file_key.split("/")[-1].split(".")[0]
-        # Draw the text onto the final image
+        if has_video:
+            text = video_data['title']
+        else:
+            text = image_key.split("/")[-1].split(".")[0]  
+        draw.text(position, text, fill=text_color, font=font)
 
-        font = ImageFont.truetype(r'arial.ttf', font_size)
-        draw.text(element["position"], text, fill=text_color, font=font)
-
-    elif element["type"] == "mandatoryImage":
-        # Load the source image
+    elif element_type == "mandatoryImage":
         source_image = Image.open(element["source"])
+        source_image_resized = source_image.resize(size)
+        source_img_array = np.array(source_image_resized)
+        source_img_clip = ImageClip(source_img_array, duration=video_duration).set_position(position)
+        composite_elements.append(source_img_clip)
+        source_image.close()
 
-        # Resize the source image to fit the template
-        source_image = source_image.resize(element["size"])
+# Add template image to composite elements
+img_array = np.array(template_image)
+img_clip = ImageClip(img_array, duration=video_duration)
+composite_elements.insert(0, img_clip)
 
-        # remove black background, make the background transparent andPaste the source image onto the final image
-        template_image.paste(source_image, element["position"], source_image)
+# Generate final output based on composite_elements
+if has_video:
+    final_video = CompositeVideoClip(composite_elements)
+    final_video.write_videofile("output/output.mp4", codec="libx264")
+else:
+    final_image = CompositeVideoClip(composite_elements).set_duration(1)
+    final_image.save_frame("output/output.png", t=0)
 
-# Save the final image
-output_path = os.path.join(output_folder, "output.png")
-template_image.save(output_path)
-
-# openai.api_key = os.environ.get('OPENAI_API_KEY')
+template_image.close()
 
 try:
-    # try:
-    #     requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn", data={
-    #         "content": "tô ficando meio pá das ideias 🥰🥰",
-    #     })
-
-    # except:
-    #     print("error in discord webhook")
-    # try:
-    #     requests.post("https://discord.com/api/webhooks/1160929462402170920/BrQ-Nh4CHdTeggROLLUgZaKcsID2f51OlLGj_WfeCt2_edd5_4omLuDU9V8-O7lKAS2C", data={
-    #         "content": "New rule added: Agora é proibido <@487714418646450184> ficar sozinho na call por mais de 30 minutos.",
-    #     })
-
-    # except:
-    #     print("error in discord webhook")
-        
-        
-        
-        
     # Load the phrases from the JSON file
     with open("phrases.json", "r", encoding="UTF-8") as f:
         phrases = json.load(f)
@@ -126,3 +144,21 @@ except Exception as e:
     with open("output/text.txt", "w") as f:
         f.write("")
     pass
+
+
+# try:
+  
+#     payload = {
+#             "content": "Boa Noite",
+#     }
+
+#     # file = {'file': open(output_path, 'rb')}
+
+#     # Send POST request to Discord webhook
+#     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+#                                   data=payload,
+#                             # files=file)
+#                             )
+    
+# except:
+#         print("error in discord webhook")
