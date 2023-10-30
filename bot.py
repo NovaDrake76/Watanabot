@@ -154,7 +154,7 @@ except Exception as e:
 # try:
   
 #     payload = {
-#             "content": "Boa Noite",
+#             "content": "Teu pai aquele nordestino",
 #     }
 
 #     # file = {'file': open(output_path, 'rb')}
