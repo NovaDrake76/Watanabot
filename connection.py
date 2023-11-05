@@ -68,8 +68,5 @@ if page_access_token:
             files=file
         )
 
-        if response.status_code != 204:
-            print(f"Failed to send to Discord. Status code: {response.status_code}. Response text: {response.text}")
-
 else:
     print('Failed to upload: No page access token found')

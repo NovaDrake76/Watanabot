@@ -114,11 +114,15 @@ composite_elements.insert(0, img_clip)
 
 # Generate final output based on composite_elements
 if has_video:
-    with open("output/type.txt", "w") as f:
-        f.write("mp4")
-    final_video = CompositeVideoClip(composite_elements)
-    final_video.write_videofile("output/output.mp4", codec="libx264")
-
+    try:
+        with open("output/type.txt", "w") as f:
+            f.write("mp4")
+        final_video = CompositeVideoClip(composite_elements)
+        final_video.write_videofile("output/output.mp4", codec="libx264")
+    except Exception as e:
+        print("error in video generation: " + str(e))
+        with open("output/type.txt", "w") as f:
+            f.write("error")
 
 else:
     final_image = CompositeVideoClip(composite_elements).set_duration(1)
