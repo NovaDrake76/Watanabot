@@ -1,12 +1,25 @@
 import os
 import requests
 import facebook
+from requests_oauthlib import OAuth1Session
 
 app_id = os.environ.get('APP_ID')
 app_secret = os.environ.get('APP_SECRET')
 user_access_token = os.environ.get('USER_ACCESS_TOKEN')
 page_access_token = os.environ.get('PAGE_ACCESS_TOKEN')
 page_id = os.environ.get('PAGE_ID')
+consumer_key = os.environ.get('TWITTER_CONSUMER_KEY')
+consumer_secret = os.environ.get('TWITTER_CONSUMER_SECRET')
+access_token = os.environ.get('TWITTER_ACCESS_TOKEN')
+access_token_secret = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
+
+# Create OAuth1Session instance
+oauth = OAuth1Session(
+    consumer_key,
+    client_secret=consumer_secret,
+    resource_owner_key=access_token,
+    resource_owner_secret=access_token_secret
+)
 
 graph = facebook.GraphAPI(page_access_token)
 
@@ -24,7 +37,6 @@ except FileNotFoundError:
 output_path = f'output/output.{file_type}'
 
 if page_access_token:
-
     try:
         with open('output/text.txt', 'r') as f:
             text = f.read()
@@ -32,9 +44,82 @@ if page_access_token:
         text = ""
 
     if file_type == 'png':
+        print('Uploading image...')
+        # Upload image to facebook
         response = graph.put_photo(image=open(output_path, 'rb'), message=text)
+
+        # Uploading media to Twitter (separate endpoint for media upload)
+        files = {
+            'media': (output_path.split('/')[-1], open(output_path, 'rb')),
+            'media_category': 'tweet_image'
+        }
+
+        # Media upload
+        media_response = oauth.post(
+            "https://upload.twitter.com/1.1/media/upload.json",
+            files={'media': (output_path.split('/')[-1], open(output_path, 'rb'))}
+        )
+
+
+        if media_response.status_code != 200:
+            raise Exception(
+                "Media upload failed: {} {}".format(media_response.status_code, media_response.text)
+            )
+        media_id = media_response.json()['media_id_string']
+        # Creating tweet with media
+        twitter_payload = {
+        "text": text,
+        "media": {
+            "media_ids": [media_id]
+        }
+        }
+        twitter_response = oauth.post(
+            "https://api.twitter.com/2/tweets",
+            json=twitter_payload
+        )
+        if twitter_response.status_code != 201:
+            raise Exception(
+                "Tweet creation failed: {} {}".format(twitter_response.status_code, twitter_response.text)
+            )
     elif file_type == 'mp4':
         response = True
+    #     print('Uploading video...')        
+    #     # Uploading media to Twitter (separate endpoint for media upload)
+    #     files = {
+    #         'media': (output_path.split('/')[-1], open(output_path, 'rb')),
+    #         'media_category': 'tweet_video'
+    #     }
+
+    #     # Media upload
+    #     media_response = oauth.post(
+    #         "https://upload.twitter.com/1.1/media/upload.json",
+    #         files={'media': (output_path.split('/')[-1], open(output_path, 'rb'))}
+    #     )
+
+
+    #     if media_response.status_code != 200:
+    #         raise Exception(
+    #             "Media upload failed: {} {}".format(media_response.status_code, media_response.text)
+    #         )
+    #     media_id = media_response.json()['media_id_string']
+    #     # Creating tweet with media
+    #     twitter_payload = {
+    #     "text": text,
+    #     "media": {
+    #         "media_ids": [media_id]
+    #     }
+    #     }
+    #     twitter_response = oauth.post(
+    #         "https://api.twitter.com/2/tweets",
+    #         json=twitter_payload
+    #     )
+    #     if twitter_response.status_code != 201:
+    #         raise Exception(
+    #             "Tweet creation failed: {} {}".format(twitter_response.status_code, twitter_response.text)
+    #         )
+    # else:
+    #     print('Failed to upload: Invalid file type')        
+        
     #     video = open(output_path, 'rb')
     #     response = graph.put_object(
     #         parent_object='me',
