@@ -6,6 +6,8 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import boto3
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
+from moviepy.audio.AudioClip import AudioArrayClip
+
 import requests
 
 # Initialize the S3 client
@@ -117,8 +119,13 @@ if has_video:
     try:
         with open("output/type.txt", "w") as f:
             f.write("mp4")
+
         final_video = CompositeVideoClip(composite_elements)
-        final_video.write_videofile("output/output.mp4", codec="libx264")
+
+        final_video.write_videofile(
+            "output/output.mp4",
+            codec="libx264",
+        )
     except Exception as e:
         print("error in video generation: " + str(e))
         with open("output/type.txt", "w") as f:

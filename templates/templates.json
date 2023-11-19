@@ -84,22 +84,6 @@
     ]
   },
   {
-    "template_path": "templates/template8.png",
-    "elements": [
-      {
-        "type": "image",
-        "position": [
-          200,
-          140
-        ],
-        "size": [
-          300,
-          320
-        ]
-      }
-    ]
-  },
-  {
     "template_path": "templates/template9.png",
     "elements": [
       {
@@ -1549,6 +1533,354 @@
         "size": [
           238,
           480
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template87.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          355,
+          77
+        ],
+        "size": [
+          363,
+          445
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template88.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          16,
+          154
+        ],
+        "size": [
+          95,
+          100
+        ]
+      },
+      {
+        "type": "text",
+        "position": [
+          108,
+          315
+        ],
+        "font_size": 12,
+        "text_color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template89.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          30,
+          140
+        ],
+        "size": [
+          312,
+          228
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template90.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          188,
+          284
+        ],
+        "size": [
+          325,
+          325
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template91.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          180,
+          440
+        ],
+        "size": [
+          190,
+          262
+        ]
+      },
+      {
+        "type": "text",
+        "position": [
+          507,
+          235
+        ],
+        "font_size": 18,
+        "text_color": "#000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template92.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          23,
+          240
+        ],
+        "size": [
+          675,
+          505
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template93.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          85,
+          210
+        ],
+        "size": [
+          430,
+          325
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template94.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          315
+        ],
+        "size": [
+          357,
+          273
+        ]
+      },
+      {
+        "type": "image",
+        "position": [
+          360,
+          315
+        ],
+        "size": [
+          357,
+          273
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template95.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          98
+        ],
+        "size": [
+          484,
+          384
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template96.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          0
+        ],
+        "size": [
+          720,
+          416
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template98.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          12,
+          95
+        ],
+        "size": [
+          460,
+          450
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template99.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          325,
+          18
+        ],
+        "size": [
+          300,
+          300
+        ]
+      },
+      {
+        "type": "text",
+        "position": [
+          437,
+          397
+        ],
+        "font_size": 32,
+        "text_color": "#000000"
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template100.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          23,
+          154
+        ],
+        "size": [
+          300,
+          220
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template101.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          112
+        ],
+        "size": [
+          360,
+          385
+        ]
+      },
+      {
+        "type": "image",
+        "position": [
+          365,
+          112
+        ],
+        "size": [
+          360,
+          385
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template102.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          380
+        ],
+        "size": [
+          390,
+          430
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template103.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          185,
+          260
+        ],
+        "size": [
+          433,
+          251
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template104.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          75,
+          100
+        ],
+        "size": [
+          300,
+          170
+        ]
+      }
+    ]
+  },
+  {
+    "template_path": "templates/template105.png",
+    "elements": [
+      {
+        "type": "image",
+        "position": [
+          0,
+          130
+        ],
+        "size": [
+          400,
+          360
+        ]
+      },
+      {
+        "type": "image",
+        "position": [
+          362,
+          130
+        ],
+        "size": [
+          360,
+          360
         ]
       }
     ]
