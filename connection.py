@@ -46,7 +46,7 @@ if page_access_token:
     if file_type == 'png':
         print('Uploading image...')
         # Upload image to Facebook
-        upload_url = f"https://graph.facebook.com/v19.0/161493586812298/photos"
+        upload_url = f"https://graph.facebook.com/v19.0/123920583940036/photos"
         response = requests.post(
             upload_url,
             params={
