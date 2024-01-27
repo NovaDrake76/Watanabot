@@ -45,8 +45,22 @@ if page_access_token:
 
     if file_type == 'png':
         print('Uploading image...')
-        # Upload image to facebook
-        response = graph.put_photo(image=open(output_path, 'rb'), message=text)
+        # Upload image to Facebook
+        upload_url = f"https://graph.facebook.com/v19.0/161493586812298/photos"
+        response = requests.post(
+            upload_url,
+            params={
+                "access_token": page_access_token
+            },
+            files={
+                "source": open(output_path, "rb")
+            }
+        )
+
+        if response.status_code != 200:
+            raise Exception(
+                f"Image upload failed: {response.status_code} {response.text}"
+            )
 
         # Uploading media to Twitter (separate endpoint for media upload)
         files = {
