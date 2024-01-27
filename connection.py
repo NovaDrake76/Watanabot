@@ -143,15 +143,15 @@ if page_access_token:
     #     )
     #     video.close()
 
-    if response is None:
-        print('Failed to upload')
-        payload = {
-           "content": "<@830191630069137459> erro ao postar",
-        }
+    # if response is None:
+    #     print('Failed to upload')
+    #     payload = {
+    #        "content": "<@830191630069137459> erro ao postar",
+    #     }
 
-        # Send POST request to Discord webhook
-        response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
-                                data=payload)
+    #     # Send POST request to Discord webhook
+    #     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+    #                             data=payload)
     else:
         print('Uploaded successfully')
 
