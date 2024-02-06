@@ -26,6 +26,19 @@ graph = facebook.GraphAPI(page_access_token)
 session = requests.Session()
 session.verify = False
 
+def sendToDiscord():
+    payload = {
+            "content": "New post: " + text,
+    }
+    file = {
+            "file": (output_path.split('/')[-1], open(output_path, 'rb'))
+        }
+    requests.post(
+            "https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+            data=payload,
+            files=file
+        )
+
 # Determine whether it's an image or video based on the information written by bot.py
 try:
     with open('output/type.txt', 'r') as f:
@@ -44,13 +57,14 @@ if page_access_token:
         text = ""
 
     if file_type == 'png':
-        print('Uploading image...')
+        print('Uploading image to facebook...')
         # Upload image to Facebook
         upload_url = f"https://graph.facebook.com/v19.0/123920583940036/photos"
         response = requests.post(
             upload_url,
             params={
-                "access_token": page_access_token
+                "access_token": page_access_token,
+                "message": text
             },
             files={
                 "source": open(output_path, "rb")
@@ -95,6 +109,9 @@ if page_access_token:
             raise Exception(
                 "Tweet creation failed: {} {}".format(twitter_response.status_code, twitter_response.text)
             )
+        
+        sendToDiscord()
+
     elif file_type == 'mp4':
         response = True
     #     print('Uploading video...')        
@@ -152,20 +169,9 @@ if page_access_token:
     #     # Send POST request to Discord webhook
     #     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
     #                             data=payload)
-    else:
-        print('Uploaded successfully')
 
-        payload = {
-            "content": "New post: " + text,
-        }
-        file = {
-            "file": (output_path.split('/')[-1], open(output_path, 'rb'))
-        }
-        response = requests.post(
-            "https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
-            data=payload,
-            files=file
-        )
+
+
 
 else:
     print('Failed to upload: No page access token found')
