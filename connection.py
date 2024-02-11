@@ -57,58 +57,64 @@ if page_access_token:
         text = ""
 
     if file_type == 'png':
-        print('Uploading image to facebook...')
-        # Upload image to Facebook
-        upload_url = f"https://graph.facebook.com/v19.0/123920583940036/photos"
-        response = requests.post(
-            upload_url,
-            params={
-                "access_token": page_access_token,
-                "message": text
-            },
-            files={
-                "source": open(output_path, "rb")
+        try:
+            print('Uploading image to facebook...')
+            # Upload image to Facebook
+            upload_url = f"https://graph.facebook.com/v19.0/123920583940036/photos"
+            response = requests.post(
+                upload_url,
+                params={
+                    "access_token": page_access_token,
+                    "message": text
+                },
+                files={
+                    "source": open(output_path, "rb")
+                }
+            )
+
+            if response.status_code != 200:
+                raise Exception(
+                    f"Image upload failed: {response.status_code} {response.text}"
+            )
+        except:
+            print('Failed to upload to Facebook')
+
+        try:
+            # Uploading media to Twitter (separate endpoint for media upload)
+            files = {
+                'media': (output_path.split('/')[-1], open(output_path, 'rb')),
+                'media_category': 'tweet_image'
             }
-        )
 
-        if response.status_code != 200:
-            raise Exception(
-                f"Image upload failed: {response.status_code} {response.text}"
+            # Media upload
+            media_response = oauth.post(
+                "https://upload.twitter.com/1.1/media/upload.json",
+                files={'media': (output_path.split('/')[-1], open(output_path, 'rb'))}
             )
 
-        # Uploading media to Twitter (separate endpoint for media upload)
-        files = {
-            'media': (output_path.split('/')[-1], open(output_path, 'rb')),
-            'media_category': 'tweet_image'
-        }
 
-        # Media upload
-        media_response = oauth.post(
-            "https://upload.twitter.com/1.1/media/upload.json",
-            files={'media': (output_path.split('/')[-1], open(output_path, 'rb'))}
-        )
-
-
-        if media_response.status_code != 200:
-            raise Exception(
-                "Media upload failed: {} {}".format(media_response.status_code, media_response.text)
+            if media_response.status_code != 200:
+                raise Exception(
+                    "Media upload failed: {} {}".format(media_response.status_code, media_response.text)
+                )
+            media_id = media_response.json()['media_id_string']
+            # Creating tweet with media
+            twitter_payload = {
+            "text": text,
+            "media": {
+                "media_ids": [media_id]
+            }
+            }
+            twitter_response = oauth.post(
+                "https://api.twitter.com/2/tweets",
+                json=twitter_payload
             )
-        media_id = media_response.json()['media_id_string']
-        # Creating tweet with media
-        twitter_payload = {
-        "text": text,
-        "media": {
-            "media_ids": [media_id]
-        }
-        }
-        twitter_response = oauth.post(
-            "https://api.twitter.com/2/tweets",
-            json=twitter_payload
-        )
-        if twitter_response.status_code != 201:
-            raise Exception(
-                "Tweet creation failed: {} {}".format(twitter_response.status_code, twitter_response.text)
-            )
+            if twitter_response.status_code != 201:
+                raise Exception(
+                    "Tweet creation failed: {} {}".format(twitter_response.status_code, twitter_response.text)
+                )
+        except:
+            print('Failed to upload to Twitter')
         
         sendToDiscord()
 

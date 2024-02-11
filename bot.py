@@ -62,6 +62,9 @@ template_path = template["template_path"]
 template_image = Image.open(template_path)
 draw = ImageDraw.Draw(template_image)
 
+textArr = []
+counter = 0
+
 # Loop through each element in the template to prepare sources
 for element in template["elements"]:
     element_type = element["type"]
@@ -69,7 +72,7 @@ for element in template["elements"]:
     size = tuple(element["size"]) if "size" in element else None
 
     if element_type == "image":
-        use_video = random.random() < 0.2  # Adjust the probability as you like
+        use_video = random.random() < 0.4  # Adjust the probability as you like
 
         if use_video and not has_video:
             has_video = True
@@ -83,22 +86,22 @@ for element in template["elements"]:
             video_clip = VideoFileClip("temp_video.mp4").resize(newsize=size)
             video_duration = video_clip.duration
             composite_elements.append(video_clip.set_position(position))
+            textArr.append(video_data['title'])
         else:
             image_data, image_key = get_random_s3_image('watanabot', 'sources')
             image = Image.open(image_data).resize(size)
             img_array = np.array(image)
             img_clip = ImageClip(img_array, duration=video_duration).set_position(position)
             composite_elements.append(img_clip)
+            textArr.append(image_key.split("/")[-1].split(".")[0])
 
     elif element_type == "text":
         font_size = element["font_size"]
         text_color = element["text_color"]
         font = ImageFont.truetype('arial.ttf', font_size)
-
-        if has_video:
-            text = video_data['title']
-        else:
-            text = image_key.split("/")[-1].split(".")[0]  
+        text = textArr[counter]
+        counter += 1
+        
         draw.text(position, text, fill=text_color, font=font)
 
     elif element_type == "mandatoryImage":
@@ -108,6 +111,8 @@ for element in template["elements"]:
         source_img_clip = ImageClip(source_img_array, duration=video_duration).set_position(position)
         composite_elements.append(source_img_clip)
         source_image.close()
+
+    
 
 # Add template image to composite elements
 img_array = np.array(template_image)
