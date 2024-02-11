@@ -49,12 +49,16 @@ except FileNotFoundError:
 
 output_path = f'output/output.{file_type}'
 
+try:
+    with open('output/text.txt', 'r') as f:
+        text = f.read()
+except:
+    text = ""
+
+sendToDiscord()
+
 if page_access_token:
-    try:
-        with open('output/text.txt', 'r') as f:
-            text = f.read()
-    except:
-        text = ""
+
 
     if file_type == 'png':
         try:
@@ -116,7 +120,7 @@ if page_access_token:
         except:
             print('Failed to upload to Twitter')
         
-        sendToDiscord()
+
 
     elif file_type == 'mp4':
         response = True
