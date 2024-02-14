@@ -72,7 +72,7 @@ for element in template["elements"]:
     size = tuple(element["size"]) if "size" in element else None
 
     if element_type == "image":
-        use_video = random.random() <1   # Adjust the probability as you like
+        use_video = random.random() < 0.4   # Adjust the probability as you like
 
         if use_video and not has_video:
             has_video = True
