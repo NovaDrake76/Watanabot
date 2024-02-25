@@ -75,18 +75,27 @@ for element in template["elements"]:
         use_video = random.random() < 0.4   # Adjust the probability as you like
 
         if use_video and not has_video:
-            has_video = True
-            video_data = get_random_video()
-            video_url = video_data['url']
-            r = requests.get(video_url, stream=True)
-            r.raise_for_status()
-            with open("temp_video.mp4", 'wb') as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
-            video_clip = VideoFileClip("temp_video.mp4").resize(newsize=size)
-            video_duration = video_clip.duration
-            composite_elements.append(video_clip.set_position(position))
-            textArr.append(video_data['title'])
+            try:
+                has_video = True
+                video_data = get_random_video()
+                video_url = video_data['url']
+                r = requests.get(video_url, stream=True)
+                r.raise_for_status()
+                with open("temp_video.mp4", 'wb') as f:
+                    for chunk in r.iter_content(chunk_size=8192):
+                        f.write(chunk)
+                video_clip = VideoFileClip("temp_video.mp4").resize(newsize=size)
+                video_duration = video_clip.duration
+                composite_elements.append(video_clip.set_position(position))
+                textArr.append(video_data['title'])
+            except Exception as e:
+                print('Failed to upload video')
+                payload = {
+                   "content": "<@830191630069137459> erro ao postar",
+                }
+                # Send POST request to Discord webhook
+                response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+                                        data=payload)
         else:
             image_data, image_key = get_random_s3_image('watanabot', 'sources')
             image = Image.open(image_data).resize(size)
