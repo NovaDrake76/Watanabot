@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 import boto3
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 from moviepy.audio.AudioClip import AudioArrayClip
+import sys
 
 import requests
 
@@ -91,12 +92,13 @@ for element in template["elements"]:
             except Exception as e:
                 print('Failed to upload video')
                 payload = {
-                   "content": "<@830191630069137459> erro ao postar",
+                   "content": "<@830191630069137459> erro ao postar vídeo",
                 }
                 # Send POST request to Discord webhook
                 response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
                                         data=payload)
-                quit()
+                sys.exit()
+             
         else:
             image_data, image_key = get_random_s3_image('watanabot', 'sources')
             image = Image.open(image_data).resize(size)
