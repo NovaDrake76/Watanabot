@@ -96,6 +96,7 @@ for element in template["elements"]:
                 # Send POST request to Discord webhook
                 response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
                                         data=payload)
+                quit()
         else:
             image_data, image_key = get_random_s3_image('watanabot', 'sources')
             image = Image.open(image_data).resize(size)
