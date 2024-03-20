@@ -108,13 +108,17 @@ for element in template["elements"]:
             textArr.append(image_key.split("/")[-1].split(".")[0])
 
     elif element_type == "text":
-        font_size = element["font_size"]
-        text_color = element["text_color"]
-        font = ImageFont.truetype('arial.ttf', font_size)
-        text = textArr[counter]
-        counter += 1
-        
-        draw.text(position, text, fill=text_color, font=font)
+        try:
+            font_size = element["font_size"]
+            text_color = element["text_color"]
+            font = ImageFont.truetype('arial.ttf', font_size)
+            text = textArr[counter]
+            counter += 1
+            
+            draw.text(position, text, fill=text_color, font=font)
+        except Exception as e:
+            print("error in text generation: " + str(e))
+            
 
     elif element_type == "mandatoryImage":
         source_image = Image.open(element["source"])
@@ -176,7 +180,7 @@ try:
 except Exception as e:
     print("error in text generation 2" + str(e))
     with open("output/text.txt", "w") as f:
-        f.write("")
+        f.write("erro ao gerar texto lmao")
     pass
 
 
