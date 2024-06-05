@@ -80,8 +80,9 @@ if page_access_token:
                 raise Exception(
                     f"Image upload failed: {response.status_code} {response.text}"
             )
-        except:
+        except Exception as e:
             print('Failed to upload to Facebook')
+            print(f'Error: {e}')
 
         try:
             # Uploading media to Twitter (separate endpoint for media upload)
