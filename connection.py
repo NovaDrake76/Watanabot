@@ -1,4 +1,5 @@
 import os
+import random
 import requests
 import facebook
 from requests_oauthlib import OAuth1Session
@@ -52,6 +53,10 @@ output_path = f'output/output.{file_type}'
 try:
     with open('output/text.txt', 'r') as f:
         text = f.read()
+        # 50% of chance of adding " no kanicasino.com" to the end of the text
+        if random.random() > 0.5:
+            text += " no kanicasino.com"
+            
 except:
     text = ""
 
