@@ -187,7 +187,7 @@ except Exception as e:
 # try:
   
 #     payload = {
-#             "content": "Teu pai aquele nordestino",
+#             "content": "",
 #     }
 
 #     # file = {'file': open(output_path, 'rb')}
@@ -200,3 +200,4 @@ except Exception as e:
     
 # except:
 #         print("error in discord webhook")
+

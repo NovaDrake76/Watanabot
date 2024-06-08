@@ -14,6 +14,7 @@ consumer_secret = os.environ.get('TWITTER_CONSUMER_SECRET')
 access_token = os.environ.get('TWITTER_ACCESS_TOKEN')
 access_token_secret = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
 
+
 # Create OAuth1Session instance
 oauth = OAuth1Session(
     consumer_key,
@@ -53,9 +54,7 @@ output_path = f'output/output.{file_type}'
 try:
     with open('output/text.txt', 'r') as f:
         text = f.read()
-        # 50% of chance of adding " no kanicasino.com" to the end of the text
-        if random.random() > 0.5:
-            text += " no kanicasino.com"
+
             
 except:
     text = ""
