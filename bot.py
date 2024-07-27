@@ -8,7 +8,6 @@ import boto3
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 from moviepy.audio.AudioClip import AudioArrayClip
 import sys
-
 import requests
 
 # Initialize the S3 client
@@ -30,11 +29,15 @@ def get_random_s3_image(bucket_name, folder_name):
     obj = s3.get_object(Bucket=bucket_name, Key=random_file_key)
     return io.BytesIO(obj['Body'].read()), random_file_key
 
-# Function to get a random video from a JSON file
-def get_random_video():
-    with open('sources/videoSources.json', 'r') as f:
-        video_data = json.load(f)
-    return random.choice(video_data['videos'])
+# Function to get a random video from S3
+def get_random_s3_video(bucket_name, folder_name):
+    response = s3.list_objects_v2(Bucket=bucket_name, Prefix=f'{folder_name}/')
+    all_objects = response['Contents']
+    all_objects = [obj for obj in all_objects if not obj['Key'].endswith('/')]
+    random_file = random.choice(all_objects)
+    random_file_key = random_file['Key']
+    obj = s3.get_object(Bucket=bucket_name, Key=random_file_key)
+    return io.BytesIO(obj['Body'].read()), random_file_key
 
 composite_elements = []
 has_video = False  # Flag to check if any video is used
@@ -73,30 +76,21 @@ for element in template["elements"]:
     size = tuple(element["size"]) if "size" in element else None
 
     if element_type == "image":
-        use_video = random.random() < 0.0   # Adjust the probability as you like
+        use_video = random.random() < 1   # Probability of using a video
 
         if use_video and not has_video:
             try:
                 has_video = True
-                video_data = get_random_video()
-                video_url = video_data['url']
-                r = requests.get(video_url, stream=True)
-                r.raise_for_status()
+                video_data, video_key = get_random_s3_video('watanabot', 'video-sources')
                 with open("temp_video.mp4", 'wb') as f:
-                    for chunk in r.iter_content(chunk_size=8192):
-                        f.write(chunk)
+                    f.write(video_data.read())
                 video_clip = VideoFileClip("temp_video.mp4").resize(newsize=size)
                 video_duration = video_clip.duration
                 composite_elements.append(video_clip.set_position(position))
-                textArr.append(video_data['title'])
+                textArr.append(video_key.split("/")[-1].split(".")[0])
             except Exception as e:
-                print('Failed to upload video')
-                payload = {
-                   "content": "<@830191630069137459> erro ao postar vídeo",
-                }
-                # Send POST request to Discord webhook
-                response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
-                                        data=payload)
+                print('Failed to generate video')
+                print(e)
                 sys.exit()
              
         else:
@@ -127,8 +121,6 @@ for element in template["elements"]:
         source_img_clip = ImageClip(source_img_array, duration=video_duration).set_position(position)
         composite_elements.append(source_img_clip)
         source_image.close()
-
-    
 
 # Add template image to composite elements
 img_array = np.array(template_image)
@@ -176,28 +168,8 @@ try:
     with open("output/text.txt", "w") as f:
         f.write(new_phrase)
 
-
 except Exception as e:
     print("error in text generation 2" + str(e))
     with open("output/text.txt", "w") as f:
         f.write("erro ao gerar texto lmao")
     pass
-
-
-# try:
-  
-#     payload = {
-#             "content": "",
-#     }
-
-#     # file = {'file': open(output_path, 'rb')}
-
-#     # Send POST request to Discord webhook
-#     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
-#                                   data=payload,
-#                             # files=file)
-#                             )
-    
-# except:
-#         print("error in discord webhook")
-
