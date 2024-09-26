@@ -35,11 +35,11 @@ def sendToDiscord():
     file = {
             "file": (output_path.split('/')[-1], open(output_path, 'rb'))
         }
-    requests.post(
-            "https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
-            data=payload,
-            files=file
-        )
+    # requests.post(
+    #         "https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
+    #         data=payload,
+    #         files=file
+    #     )
     requests.post(
             "https://discord.com/api/webhooks/1287243812972007444/WHfkavqKIyp7x2vHYBP35B33Hl0CRK2sbf27oyWvHW0S187slhlNpiGt7mEzuApsHpd6",
             data=payload,
