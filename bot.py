@@ -8,6 +8,7 @@ import boto3
 from moviepy.editor import VideoFileClip, ImageClip, CompositeVideoClip
 from moviepy.audio.AudioClip import AudioArrayClip
 import sys
+from datetime import datetime
 
 import requests
 
@@ -20,15 +21,27 @@ session = boto3.Session(
     region_name='South America (Sao Paulo)'
 )
 
-# Function to get a random image from S3
+# Function to get a random image from S3. 60% of chance to get a "new" image, where "new" means that its one of the last 40 images uploaded
 def get_random_s3_image(bucket_name, folder_name):
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=f'{folder_name}/')
     all_objects = response['Contents']
     all_objects = [obj for obj in all_objects if not obj['Key'].endswith('/')]
-    random_file = random.choice(all_objects)
-    random_file_key = random_file['Key']
-    obj = s3.get_object(Bucket=bucket_name, Key=random_file_key)
-    return io.BytesIO(obj['Body'].read()), random_file_key
+
+    # Sort objects by LastModified date
+    all_objects.sort(key=lambda obj: obj['LastModified'], reverse=True)
+
+    # Get the last 40 images
+    new_images = all_objects[:40]
+
+    # Decide whether to pick a "new" image or a random image
+    if random.random() < 0.6:  # 60% chance
+        selected_image = random.choice(new_images)
+    else:
+        selected_image = random.choice(all_objects)
+
+    selected_image_key = selected_image['Key']
+    obj = s3.get_object(Bucket=bucket_name, Key=selected_image_key)
+    return io.BytesIO(obj['Body'].read()), selected_image_key
 
 # Function to get a random video from a JSON file
 def get_random_video():
