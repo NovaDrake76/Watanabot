@@ -21,7 +21,7 @@ session = boto3.Session(
     region_name='South America (Sao Paulo)'
 )
 
-# Function to get a random image from S3. 60% of chance to get a "new" image, where "new" means that its one of the last 40 images uploaded
+# Function to get a random image from S3. x% chance to get a "new" image
 def get_random_s3_image(bucket_name, folder_name):
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=f'{folder_name}/')
     all_objects = response['Contents']
@@ -30,11 +30,11 @@ def get_random_s3_image(bucket_name, folder_name):
     # Sort objects by LastModified date
     all_objects.sort(key=lambda obj: obj['LastModified'], reverse=True)
 
-    # Get the last 40 images
-    new_images = all_objects[:40]
+    # Get the most recent
+    new_images = all_objects[:30]
 
     # Decide whether to pick a "new" image or a random image
-    if random.random() < 0:  # 0% chance
+    if random.random() < 1:  # 100% chance
         selected_image = random.choice(new_images)
     else:
         selected_image = random.choice(all_objects)
