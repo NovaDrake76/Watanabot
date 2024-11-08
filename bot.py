@@ -34,7 +34,7 @@ def get_random_s3_image(bucket_name, folder_name):
     new_images = all_objects[:30]
 
     # Decide whether to pick a "new" image or a random image
-    if random.random() < 1:  # 100% chance
+    if random.random() < 20:  # 0% chance
         selected_image = random.choice(new_images)
     else:
         selected_image = random.choice(all_objects)
@@ -200,7 +200,7 @@ except Exception as e:
 # try:
   
 #     payload = {
-#             "content": "",
+#             "content": "Esse template está funcionando?",
 #     }
 
 #     # file = {'file': open(output_path, 'rb')}
@@ -208,7 +208,7 @@ except Exception as e:
 #     # Send POST request to Discord webhook
 #     response = requests.post("https://discord.com/api/webhooks/1160361902304657428/_njx1u0FLUE2B3zfkNfpEQkdoe5mOSvxqL20wDuDWXc7rnETU87t7oxH_f_svxFjmBAn",
 #                                   data=payload,
-#                             # files=file)
+#                             files={'file': open("output/output.png", 'rb')}
 #                             )
     
 # except:
