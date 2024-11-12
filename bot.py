@@ -34,7 +34,7 @@ def get_random_s3_image(bucket_name, folder_name):
     new_images = all_objects[:30]
 
     # Decide whether to pick a "new" image or a random image
-    if random.random() < 20:  # 0% chance
+    if random.random() < 0: # 1 means always pick a new image
         selected_image = random.choice(new_images)
     else:
         selected_image = random.choice(all_objects)
